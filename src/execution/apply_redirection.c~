@@ -1,0 +1,62 @@
+/*
+** apply_redirection.c for  in /home/darkmark/rendu/PSU_2015_minishell2/src/execution
+** 
+** Made by Marc Lallias
+** Login   <lallia_m@epitech.net>
+** 
+** Started on  Thu Apr 14 01:24:58 2016 Marc Lallias
+** Last update Thu Apr 14 15:51:58 2016 Marc Lallias
+*/
+
+#include "../../inc/minishell2.h"
+
+int	close_father(t_put *put)
+{
+  //printf("dassssssssssssssssssssssssssssssssssss\n");
+  if (put->p1_stat == FULL)
+    {
+      //close(put->p1[0]);
+      close((put->p1)[0]);
+    }
+  if (put->p1_stat == EMPTY)
+    {
+      close(put->p1[1]);
+    }
+  if (put->p2_stat == FULL)
+    {
+      //close(put->p2[0]);
+      close(put->p2[0]);
+    }
+  if (put->p2_stat == EMPTY)
+    close(put->p2[1]);
+  return (0);
+}
+
+int	apply_redirection(t_put *put)
+{
+  printf("DANS APPLY\n");
+  if (put->p1_stat == EMPTY)
+    {
+      printf("CHARGE PIPE1\n");
+      dup2(put->p1[EMPTY], 1);
+      close(put->p1[0]);
+    }
+  if (put->p1_stat == FULL)
+    {
+      printf("DECHARGE PIPE1\n");
+      dup2(put->p1[FULL], 0);
+      //close(put->p1[1]);
+    }
+  if (put->p2_stat == EMPTY)
+    {
+      printf("CHARGE 2\n");
+      dup2(put->p2[EMPTY], 1);
+      //close(put->p2[0]);
+    }
+  if (put->p2_stat == FULL)
+    {
+      printf("DECHARGE 2\n");
+      dup2(put->p2[FULL], 0);
+      //close(put->p2[1]);
+    }
+}
