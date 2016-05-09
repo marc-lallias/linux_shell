@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 01:14:29 2016 Marc Lallias
-** Last update Sun Apr 10 03:19:41 2016 Marc Lallias
+** Last update Sat Apr 30 17:33:00 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -53,6 +53,24 @@ char	*my_strcat(char *dest, char *source)
       *dest = *source;
       source++;
       *dest++;
+    }
+  *dest = '\0';
+  return (first);
+}
+
+char	*my_str_n_copy(char *dest, char *source, int size)
+{
+  char	*first;
+
+  if (source == NULL)
+    return (NULL);
+  first = dest;
+  while (*source && (size > 0))
+    {
+      *dest = *source;
+      source++;
+      *dest++;
+      size--;
     }
   *dest = '\0';
   return (first);

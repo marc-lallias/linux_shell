@@ -5,7 +5,7 @@
 ## Login   <lallia_m@epitech.net>
 ## 
 ## Started on  Sun Apr  3 23:58:58 2016 Marc Lallias
-## Last update Thu Apr 14 22:36:15 2016 Marc Lallias
+## Last update Fri May  6 21:12:26 2016 Marc Lallias
 ##
 
 NAME	=	mysh
@@ -20,6 +20,7 @@ SRC	=	./src/main.c				\
 		./src/build_in/setenv.c			\
 		./src/build_in/unsetenv.c		\
 		./src/execution/apply_redirection.c	\
+		./src/execution/check_exe.c		\
 		./src/execution/lambda.c		\
 		./src/execution/parsing_token.c		\
 		./src/list.c				\
@@ -32,6 +33,7 @@ SRC	=	./src/main.c				\
 		./src/shell_tools/my_arg.c		\
 		./src/shell_tools/shell_tools.c		\
 		./src/tools/my_getnbr.c			\
+		./src/token/check.c			\
 		./src/token/double_redir.c		\
 		./src/token/init_put_struct.c		\
 		./src/token/pipe.c			\
@@ -40,7 +42,7 @@ SRC	=	./src/main.c				\
 
 OBJ	=	$(SRC:.c=.o)
 
-CC	=	gcc
+CC	=	gcc -g
 
 RM	=	rm -rf
 

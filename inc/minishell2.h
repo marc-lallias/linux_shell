@@ -1,11 +1,11 @@
 /*
-1;4002;0c** getenv.h for  in /home/darkmark/perso/my_getenv
+** getenv.h for  in /home/darkmark/perso/my_getenv
 ** 
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Thu Apr 14 22:44:14 2016 Marc Lallias
+** Last update Sun May  8 18:35:40 2016 Marc Lallias
 */
 
 #ifndef MINISHELL2_H_
@@ -29,6 +29,14 @@
 # define FULL (0)
 #endif /* FULL */
 
+#ifndef BAD
+# define BAD (1)
+#endif /* EMPTY */
+
+#ifndef NORMAL
+# define NORMAL (0)
+#endif /* FULL */
+
 typedef struct		s_put
 {
   char			**argv;
@@ -38,7 +46,8 @@ typedef struct		s_put
   int			p2_stat;
   int			r_in;
   int			r_out;
-  int			f_err;
+  int			rr_in;
+  int			rr_out;
 }			t_put;
 
 typedef struct		s_env
@@ -64,7 +73,9 @@ void		put_err(char *str);
 
 /* body/build_in1.c */
 
-int		build_in1(char **argv, t_env **l_env);
+int		build_in_child(char **argv, t_env **l_env);
+int		build_in_father(char **argv, t_env **l_env);
+int		check_build_in(char *str);
 
 /* body/choose_token.c */
 
@@ -102,21 +113,30 @@ int		apply_redirection(t_put *put);
 int		apply_redirection2(t_put *put);
 int		close_father(t_put *put);
 
+/* execution/check_exe.c */
+
+int		check_exe(char **str, t_env *l_env);
+
 /* exection/lamba.c */
 
 int		exec(char **argv, t_env **l_env, t_put *put);
 int		exec_bin(char **argv, t_env **l_env);
+int		father(int pid, t_put *put);
+char		*next_path(char *buff, char *try, char *arg1);
 int		normal(char **argv, t_env **l_env, t_put *put);
 
 /* exection/parsing_token.c */
 
-t_exe		*build_list_exec(char **tab, t_exe *elem);
-int		check_token(char *str);
-t_exe		*exec_list(char **tab);
-t_exe		*insert_node(char **tab);
+t_exe		*build_list_exec(t_env *com, t_exe *elem);
+int		check_all_token(char *str);
+int		check_spliters(char *str);
+t_exe		*exec_list(t_env *com, t_env *env);
+t_exe		*insert_node(char **tab, t_exe *elem);
 
 /* list.c */
 
+t_env		*rev_env_list(t_env *elem);
+t_exe		*rev_exe_list(t_exe *elem);
 int		env_list_len(t_env *l_env);
 
 /* manip/manip_string1.c */
@@ -129,6 +149,7 @@ int		my_strlen(char *str);
 
 void		my_free_tab(char **tab);
 char		**my_realloc_tab(char **tab, int size);
+char		*my_str_n_copy(char *dest, char *src, int size);
 
 /* match_n_match.c */
 
@@ -139,7 +160,9 @@ int		match_n_match(char *to_find, char *find_in);
 /* shell/tools/my_argv.c */
 
 char		*define_arg_content(char *com);
-char		**my_argv(char *com);
+t_env		*my_argv(char *com);
+char            *pass_arg(char *str);
+t_env           *pars_commande(t_env *argv, char **com);
 char		*put_in_arg(char *str, int size);
 
 /* shell_tool/env.c */
@@ -161,6 +184,15 @@ char		*pass_to(char *line, char to_pass);
 
 int		my_getnbr(char *str);
 
+/* token/check.c */
+
+int             check_token(char *str);
+int		check_signifiant(char *str);
+
+/* token/double_redir.c */
+
+t_exe		*double_redir_left(t_exe *to_do, t_env **l_env, t_put *curr);
+t_exe		*double_redir_right(t_exe *to_do, t_env **l_env, t_put *curr);
 
 /* token/init_put_struct.c */
 
@@ -188,4 +220,6 @@ t_exe		*double_redir_right(t_exe *to_do, t_env **l_env, t_put *curr);
 
 #endif /* MINISHELL2_H_ */
 
-/* UNTRACED */
+/* checker si right cd */
+
+/* checker si arv > ARG_MAX dans lambda ou parsing_token */

@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu Apr 14 01:24:58 2016 Marc Lallias
-** Last update Thu Apr 14 23:57:06 2016 Marc Lallias
+** Last update Sun May  8 14:10:36 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -55,8 +55,10 @@ int	apply_redirection2(t_put *put)
   if (put->r_in != -1)
     dup2(put->r_in, 0);
   if (put->r_out != -1)
-    {
-      dup2(put->r_out, 1);
-    }
+    dup2(put->r_out, 1);
+  if (put->rr_in != -1)
+    dup2(put->rr_in, 0);
+  if (put->rr_out != -1)
+    dup2(put->rr_out, 1);
   return (0);
 }

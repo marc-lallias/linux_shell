@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 16:15:33 2016 Marc Lallias
-** Last update Tue Apr 12 18:27:50 2016 Marc Lallias
+** Last update Mon May  2 17:15:18 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -20,6 +20,7 @@ int	aff_env_list(t_env *l_env)
     }
   else
     return (1);
+  return (0);
 }
 
 void	my_putchar(char c, int outpout)
@@ -51,6 +52,8 @@ void	my_show_tab(char **tab)
 
 void	put_err(char *str)
 {
+  if (str == NULL)
+    return;
   write(2, str, (my_strlen(str)));
   return ;
 }

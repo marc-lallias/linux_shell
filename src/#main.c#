@@ -59,7 +59,7 @@ int	prep_execution(char *line, t_env **l_env)
   /*   return (-1); */
   /* while (to_do) */
   /*   { */
-  /*     printf("\n   CURR:\n"); */
+  /*     printf("\n   CURR \n"); */
   /*     my_show_tab(to_do->data_tab); */
       
   /*     if (to_do->left) */
