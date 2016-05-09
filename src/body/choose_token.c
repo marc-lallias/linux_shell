@@ -5,7 +5,7 @@ c**
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr 11 20:16:13 2016 Marc Lallias
-** Last update Mon May  9 18:45:40 2016 Marc Lallias
+** Last update Mon May  9 19:06:17 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -31,7 +31,7 @@ t_exe	*choose_token(t_exe *to_do, t_env **l_env, t_put *curr)
 	  put_err("Unknow command\n");
 	  return (NULL);
 	}
-      printf("executable: %s\n", *(to_do->data_tab));
+      /* printf("executable: %s\n", *(to_do->data_tab)); */
       curr->argv = to_do->data_tab;
       return (to_do);
     }
