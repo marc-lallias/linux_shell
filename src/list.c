@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sun Apr  3 23:52:03 2016 Marc Lallias
-** Last update Sun May  1 16:17:57 2016 Marc Lallias
+** Last update Mon May  9 15:00:00 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
@@ -37,8 +37,9 @@ t_exe	*rev_exe_list(t_exe *elem)
 
   if (elem == NULL)
     return (NULL);
+  keep = elem->right;
   previus = NULL;
-  while (keep)
+  while (keep != NULL)
     {
       keep = elem->right;
       elem->right = previus;

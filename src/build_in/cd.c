@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 21:09:32 2016 Marc Lallias
-** Last update Mon Apr 11 15:50:04 2016 Marc Lallias
+** Last update Mon May  9 18:57:59 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -23,9 +23,9 @@ int	move(char *to_go, t_env **l_env)
   pwd = getcwd(buff, PATH_MAX);
   if ((chdir(to_go)) == -1)
     {
-      put_err("Repository dosn't exist.\n");
+      put_err("Repository doesn't exist.\n");
       return (0);
-    }  
+    }
   change_env(l_env, "OLDPWD", pwd);
   pwd = getcwd(buff, PATH_MAX);
   change_env(l_env, "PWD", pwd);

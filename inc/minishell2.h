@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Sun May  8 18:35:40 2016 Marc Lallias
+** Last update Mon May  9 16:07:03 2016 Marc Lallias
 */
 
 #ifndef MINISHELL2_H_
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <unistd.h>
 
 #include <stdio.h>

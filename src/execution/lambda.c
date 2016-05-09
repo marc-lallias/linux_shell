@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Apr  6 01:21:21 2016 Marc Lallias
-** Last update Mon May  9 14:23:07 2016 Marc Lallias
+** Last update Mon May  9 18:52:56 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -17,11 +17,11 @@ int	exec_bin(char **argv, t_env **l_env)
   char	**env;
 
   /* *buff = '\0'; */
+  env = build_env(*l_env);
+  if (env == NULL)
+    exit(EXIT_FAILURE);
   if ((access(argv[0], X_OK)) == F_OK) /* check ARG_MAX */
     execve(argv[0], argv, env);
-  /* env = build_env(*l_env); */
-  /* if (env == NULL) */
-  /*   exit(EXIT_FAILURE); */
   /* if ((try = my_getenv(*l_env, "PATH")) == NULL) */
   /*   { */
   /*     put_err("No PATH in env\n"); */
@@ -34,7 +34,7 @@ int	exec_bin(char **argv, t_env **l_env)
   /*   } */
   /* put_err(argv[0]); */
   /* put_err(" : commande introuvable\n"); */
-  /* exit(EXIT_FAILURE); */
+  exit(EXIT_FAILURE);
   return (1);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 00:15:15 2016 Marc Lallias
-** Last update Sat May  7 22:47:43 2016 Marc Lallias
+** Last update Mon May  9 18:52:05 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
@@ -61,7 +61,6 @@ int	prep_execution(char *line, t_env **l_env)
   /*   { */
   /*     printf("\n   CURR:\n"); */
   /*     my_show_tab(to_do->data_tab); */
-      
   /*     if (to_do->left) */
   /* 	{ */
   /* 	  printf("          LEFT:\n"); */

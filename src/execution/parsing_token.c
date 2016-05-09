@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sat Apr  9 18:03:46 2016 Marc Lallias
-** Last update Mon May  9 14:22:29 2016 Marc Lallias
+** Last update Mon May  9 18:36:28 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -84,23 +84,28 @@ int	check_wrong_line(t_exe *exe, t_env *chevron, t_env *arg)
 
 t_exe	*build_tree(t_exe *exe, t_env *chevron, t_env *arg)
 {
-  if ((check_build_in(chevron->data) == 1)
-      || ((access(chevron->data, X_OK)) == F_OK))
+  if ((check_spliters(chevron->data)) == 1)
     {
-      if ((exe = insert_node(convert(chevron, arg), exe)) == NULL)
-	return (NULL);
+      if ((exe = insert_node(convert(chevron, chevron->next), exe))
+	  == NULL)
+  	return (NULL);
+      chevron = chevron->next;
     }
-  else
+  else if ((check_redir(chevron->data)) == 1)
     {
-      if ((check_wrong_line(exe, chevron, arg)) == 1)
-	{
-	  /* free(exe); */
-	  return (NULL);
-	}
+      if (chevron->next == NULL)
+	return (NULL);
       if ((exe = insert_node(convert(chevron, chevron->next), exe)) == NULL)
 	return (NULL);
       chevron = chevron->next;
-      if ((exe->left = insert_node((convert(chevron, arg)), NULL)) == NULL)
+      if ((exe->left = insert_node(convert(chevron, chevron->next), exe))
+	  == NULL)
+	return (NULL);
+      chevron = chevron->next;
+    }
+  if (arg != chevron)
+    {
+      if ((exe = insert_node(convert(chevron, arg), exe)) == NULL)
 	return (NULL);
     }
   return (exe);
@@ -115,17 +120,18 @@ t_exe	*exec_list(t_env *arg, t_env *l_env)
   exe = NULL;
   ret = 1;
   chevron = arg;
-  if ((check_build_in(arg->data) != 1) && (check_exe(&(arg->data), l_env)) == -1)
-    return (NULL);
+  /* if (((check_build_in(arg->data)) != 1) */
+  /*     && ((check_exe(&(arg->data), l_env)) == -1)) */
+  /*   return (NULL); */
   while (arg != NULL)
     {
       arg = arg->next;
-      if ((arg == NULL) || (((check_signifiant(arg->data)) == 1)
-			    || (ret = check_exe(&(arg->data), l_env)) == 1))
+      if ((arg == NULL) || ((check_redir(arg->data)) == 1)
+	  || ((check_spliters(arg->data)) == 1))
 	{
 	  exe = build_tree(exe, chevron, arg);
 	  chevron = arg;
-	  if (exe == NULL || ret == -1)
+	  if (exe == NULL)
 	    {
 	      /* free(exe); */
 	    return (NULL);
