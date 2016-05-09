@@ -5,10 +5,10 @@
 ## Login   <lallia_m@epitech.net>
 ## 
 ## Started on  Sun Apr  3 23:58:58 2016 Marc Lallias
-## Last update Fri May  6 21:12:26 2016 Marc Lallias
+## Last update Mon May  9 14:29:00 2016 
 ##
 
-NAME	=	mysh
+NAME	=	42sh
 
 SRC	=	./src/main.c				\
 		./src/aff/aff.c				\
