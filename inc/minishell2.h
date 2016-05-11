@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Mon May  9 16:07:03 2016 Marc Lallias
+** Last update Wed May 11 00:23:20 2016 Marc Lallias
 */
 
 #ifndef MINISHELL2_H_
@@ -49,6 +49,7 @@ typedef struct		s_put
   int			r_out;
   int			rr_in;
   int			rr_out;
+  int			ret;
 }			t_put;
 
 typedef struct		s_env
@@ -91,6 +92,10 @@ int		do_list(t_exe *to_do, t_env **l_env, t_put *curr);
 int		move(char *to_go, t_env **l_env);
 int		my_cd(char **argv, t_env **l_env);
 char		*pwd(t_env *l_env);
+
+/* build_in/echo.c */
+
+int		my_echo(char **argv, t_env **l_env);
 
 /* build_in/setenv.c */
 
@@ -200,7 +205,6 @@ t_exe		*double_redir_right(t_exe *to_do, t_env **l_env, t_put *curr);
 int		close_put_struct(t_put *put);
 int		start_put_struct(t_put *put);
 int		init_put_struct(t_put *put);
-
 
 /* token/pipe_shell.c */
 

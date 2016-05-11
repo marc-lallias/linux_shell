@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Apr  6 01:21:21 2016 Marc Lallias
-** Last update Mon May  9 18:52:56 2016 Marc Lallias
+** Last update Wed May 11 00:51:55 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -65,7 +65,7 @@ int	father(int pid, t_put *put)
 	}
     }
   /* printf("retour de l'execve: %d\n", WEXITSTATUS(status)); */
-  return (WEXITSTATUS(status));
+  return ((WEXITSTATUS(status)));
 }
 
 int	normal(char **argv, t_env **l_env, t_put *put)
@@ -75,7 +75,7 @@ int	normal(char **argv, t_env **l_env, t_put *put)
   int	ret;
 
   if ((ret = build_in_father(argv, l_env)) != -1)
-    return (ret);
+      return (ret);
   pid = fork();
   if (pid == -1)
     {

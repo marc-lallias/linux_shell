@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 13:51:51 2016 Marc Lallias
-** Last update Mon May  9 18:58:17 2016 Marc Lallias
+** Last update Tue May 10 21:50:49 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -22,7 +22,29 @@ int	check_build_in(char *str)
       return (1);
   if ((match_n_match(str, "echo")) == 1)
     return (1);
+  if ((match_n_match(str, "exit")) == 1)
+    return (1);
   return (0);
+}
+
+int	buid_in(char **argv, t_env **l_env)
+{
+  if (argv != NULL)
+    {
+      if ((match_complet(argv[0], "env")) == 1)
+	  return ((aff_env_list(*l_env)));
+      if ((match_n_match(argv[0], "setenv")) == 1)
+	return ((my_setenv(argv, l_env)));
+      if ((match_n_match(argv[0], "unsetenv")) == 1)
+	return ((my_unsetenv(argv, l_env)));
+      if ((match_n_match(argv[0], "cd")) == 1)
+	  return ((my_cd(argv, l_env)));
+      if ((match_n_match(argv[0], "echo")) == 1)
+	return ((my_echo(argv, l_env)));
+      if ((match_n_match(argv[0], "exit")) == 1)
+	  return ((my_exit(argv, l_env)));
+    }
+  return (-1);
 }
 
 int	build_in_child(char **argv, t_env **l_env)
@@ -31,6 +53,8 @@ int	build_in_child(char **argv, t_env **l_env)
     {
       if ((match_complet(argv[0], "env")) == 1)
 	  return ((aff_env_list(*l_env)));
+      if ((match_n_match(argv[0], "echo")) == 1)
+	return ((my_echo(argv, l_env)));
     }
   return (-1);
 }

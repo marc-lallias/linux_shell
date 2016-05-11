@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 00:15:15 2016 Marc Lallias
-** Last update Mon May  9 18:52:05 2016 Marc Lallias
+** Last update Wed May 11 01:01:16 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
@@ -71,7 +71,7 @@ int	prep_execution(char *line, t_env **l_env)
   start_put_struct(&curr);
   do_list(to_do, l_env, &curr);
   close_put_struct(&curr);  /* free to_do */
-  return (-1);
+  return (curr.ret);
 }
 
 int	prompt(t_env **l_env, char *buff)
@@ -79,20 +79,21 @@ int	prompt(t_env **l_env, char *buff)
   char	**argv;
   char	*line;
   int	ret;
-  
+
+  ret = 0;
   my_put_str((getcwd(buff, PATH_MAX)));
   my_put_str(": ");
   while ((line = get_next_line(0)) != NULL)
     {
-      
-      prep_execution(line, l_env);
-      free(line);
-      /* my_free_tab(argv); */
+      ret = prep_execution(line, l_env);
+      /* printf("%d\n", ret); */
       my_put_str((getcwd(buff, PATH_MAX)));
       my_put_str(": ");
+      free(line);
+      /* my_free_tab(argv); */
     }
   my_putchar('\n', 1);
-  return (0);
+  return (ret);
 }
 
 void	handler(int signal)

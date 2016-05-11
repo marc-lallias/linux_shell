@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sat Apr  2 03:23:28 2016 Marc Lallias
-** Last update Thu May  5 19:13:07 2016 Marc Lallias
+** Last update Wed May 11 01:24:22 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -61,7 +61,7 @@ char		*define_arg_content(char *com)
 	    return (NULL);
 	  }
 	}
-      if (*com == ' ')
+      if (*com == ' ' || *com == '\t')
 	  return (com);
       if ((ret = check_token(com)) != 0)
 	  return (com + ret);
@@ -78,7 +78,6 @@ t_env		*pars_commande(t_env *arg, char **com)
   char		*chevron;
   char		*line;
   
-  *com = pass_arg(*com);/* y avait un check '\0' */
   chevron = *com;
   if ((*com = define_arg_content(*com)) == NULL)
     {
@@ -92,6 +91,7 @@ t_env		*pars_commande(t_env *arg, char **com)
   if ((arg = make_env_list(arg, NULL)) == NULL)
     return (NULL);
   arg->data = line;
+  *com = pass_arg(*com);/* y avait un check '\0' */
   return (arg);
 }
 
@@ -102,6 +102,8 @@ t_env		*my_argv(char *com)
   char		*line;
 
   arg = NULL;
+  if (com)
+  com = pass_arg(com);/* y avait un check '\0' */
   while (*com)
     {
       if ((arg = pars_commande(arg, &com)) == NULL)

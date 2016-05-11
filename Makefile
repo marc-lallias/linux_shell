@@ -5,7 +5,7 @@
 ## Login   <lallia_m@epitech.net>
 ## 
 ## Started on  Sun Apr  3 23:58:58 2016 Marc Lallias
-## Last update Mon May  9 14:29:00 2016 
+## Last update Tue May 10 21:49:31 2016 Marc Lallias
 ##
 
 NAME	=	42sh
@@ -16,6 +16,7 @@ SRC	=	./src/main.c				\
 		./src/body/choose_token.c		\
 		./src/body/do_list.c			\
 		./src/build_in/cd.c			\
+		./src/build_in/my_echo.c		\
 		./src/build_in/exit.c			\
 		./src/build_in/setenv.c			\
 		./src/build_in/unsetenv.c		\
