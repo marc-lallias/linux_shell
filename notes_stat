@@ -1,0 +1,44 @@
+//Notes de stat pour mon chère ami Marc.
+
+
+1> Initialisation:
+
+//On commence par récupérer la structure stat, celle qui carry.
+
+struct stat	buff;
+
+stat(*str, &buff); //Stat peut return des trucs, check si t'en as besoin.
+
+
+2>Utilisation des informations:
+
+//A présent on a la super structure stat.
+//On va l'utiliser pour récupérer le nom du proprio.
+
+struct stat	buff;
+struct passwd	*pwuid;
+
+stat(*str, &buff);
+pwuid = getpwuid(buff.st_uid); //Ya aussi une valeur de retour mais la flemme de regarder.
+
+//On a notre structure passwd qui possède un char *pw_name qui est l'username :)
+
+3>On rajoute donc la condition pour voir si c'est un directory et on a le tout:
+
+struct stat	buff;
+struct passwd	*pwuid;
+
+stat(*str, &buff);
+pwuid = getpwuid(buff.st_uid);
+if (S_ISDIR(buff.st_mode)) //Si c'est un dossier
+{
+ //Notre username est pwuid->pw_name
+ //Faire ce que tu veux.
+}
+
+
+/!\ Si tu veux test si le fichier est executable la condition c'est buff.st_mode & S_IXUSR
+/!\ Si tu veux test si c'est un fichier simplement la condition c'est S_ISREG(buff.st_mode)
+
+
+PS: la structure passwd donne d'autre information. Si tu as besoin d'infos complémentaires hésites pas à aller check. Ca donne notamment le home de l'user par exemple.
