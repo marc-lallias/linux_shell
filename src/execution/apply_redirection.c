@@ -5,22 +5,32 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu Apr 14 01:24:58 2016 Marc Lallias
-** Last update Sun May  8 14:10:36 2016 Marc Lallias
+** Last update Sun May 15 15:51:59 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
 int	close_father(t_put *put)
 {
+  if (put->p1_stat == EMPTY)
+    {
+      close((put->p1)[FOR_READ]);
+      (put->p1)[FOR_READ] = -1;
+    }
   if (put->p1_stat == FULL)
     {
-      close((put->p1)[1]);
-      put->p1[1] = -1;
+      close((put->p1)[FOR_WRITE]);
+      (put->p1)[FOR_WRITE] = -1;
+    }
+  if (put->p2_stat == EMPTY)
+    {
+      close((put->p2)[FOR_READ]);
+      (put->p2)[FOR_READ] = -1;
     }
   if (put->p2_stat == FULL)
     {
-      close(put->p2[1]);
-      put->p2[1] = -1;
+      close((put->p2)[FOR_WRITE]);
+      (put->p2)[FOR_WRITE] = -1;
     }
   return (0);
 }
@@ -29,23 +39,23 @@ int	apply_redirection(t_put *put)
 {
   if (put->p1_stat == EMPTY)
     {
-      dup2(put->p1[EMPTY], 1);
-      close(put->p1[0]);
+      dup2((put->p1)[FOR_READ], 0);
+      close((put->p1)[FOR_WRITE]);
     }
   if (put->p1_stat == FULL)
     {
-      dup2(put->p1[FULL], 0);
-      close(put->p1[1]);
+      dup2((put->p1)[FOR_WRITE], 1);
+      close((put->p1)[FOR_READ]);
     }
   if (put->p2_stat == EMPTY)
     {
-      dup2(put->p2[EMPTY], 1);
-      close(put->p2[0]);
+      dup2((put->p2)[FOR_READ], 0);
+      close((put->p2)[FOR_WRITE]);
     }
   if (put->p2_stat == FULL)
     {
-      dup2(put->p2[FULL], 0);
-      close(put->p2[1]);
+      dup2((put->p2)[FOR_WRITE], 1);
+      close((put->p2)[FOR_READ]);
     }
   return (apply_redirection2(put));
 }

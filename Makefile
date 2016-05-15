@@ -5,7 +5,7 @@
 ## Login   <lallia_m@epitech.net>
 ## 
 ## Started on  Sun Apr  3 23:58:58 2016 Marc Lallias
-## Last update Tue May 10 21:49:31 2016 Marc Lallias
+## Last update Sat May 14 18:04:31 2016 Marc Lallias
 ##
 
 NAME	=	42sh
@@ -23,6 +23,7 @@ SRC	=	./src/main.c				\
 		./src/execution/apply_redirection.c	\
 		./src/execution/check_exe.c		\
 		./src/execution/lambda.c		\
+		./src/execution/make_graph.c		\
 		./src/execution/parsing_token.c		\
 		./src/list.c				\
 		./src/manipulation/manip_tab1.c		\

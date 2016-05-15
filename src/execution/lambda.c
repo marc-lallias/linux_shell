@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Apr  6 01:21:21 2016 Marc Lallias
-** Last update Wed May 11 00:51:55 2016 Marc Lallias
+** Last update Sun May 15 15:50:50 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -50,21 +50,22 @@ int	exec(char **argv, t_env **l_env, t_put *put)
   return (exec_bin(argv, l_env));
 }
 
-int	father(int pid, t_put *put)
+int	father_wait(t_put *put)
 {
   int       status;
 
-  close_father(put);
-  waitpid(pid, &status, WUNTRACED);
-  if (WIFSIGNALED(status))
+  while (wait(&status) > 0)/* , WUNTRACED */
     {
-      if (WCOREDUMP(status))
+      if (WIFSIGNALED(status))
 	{
-	  put_err("Erreur de segmentation (core dumped).\n");
-	  return (1);/* SIGUSR TRUC */
+	  if (WCOREDUMP(status))
+	    {
+	      put_err("Erreur de segmentation (core dumped).\n");
+	      return (1);/* SIGUSR TRUC */
+	    }
 	}
+      /* printf("retour de l'execve: %d\n", WEXITSTATUS(status)); */
     }
-  /* printf("retour de l'execve: %d\n", WEXITSTATUS(status)); */
   return ((WEXITSTATUS(status)));
 }
 
@@ -74,6 +75,8 @@ int	normal(char **argv, t_env **l_env, t_put *put)
   int	pid;
   int	ret;
 
+  if ( argv == NULL)
+    return (1);
   if ((ret = build_in_father(argv, l_env)) != -1)
       return (ret);
   pid = fork();
@@ -85,6 +88,8 @@ int	normal(char **argv, t_env **l_env, t_put *put)
   if (pid == 0)
     exec(argv, l_env, put);
   else
-    return (father(pid, put));
+    close_father(put);
+  /* else */
+  /*   return (father(put)); */
   return (1);
 }

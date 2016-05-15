@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sun Apr  3 23:52:03 2016 Marc Lallias
-** Last update Mon May  9 15:00:00 2016 Marc Lallias
+** Last update Thu May 12 14:56:01 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
@@ -48,6 +48,18 @@ t_exe	*rev_exe_list(t_exe *elem)
 	elem = keep;
     }
   return (elem);
+}
+
+t_exe	*put_in_exe(t_exe *elem)
+{
+  t_exe	*new;
+
+  new = malloc(sizeof(t_exe));
+  if (new == NULL)
+    return (NULL);
+  new->left = NULL;
+  new->right = elem;
+  return (new);
 }
 
 int	env_list_len(t_env *env)

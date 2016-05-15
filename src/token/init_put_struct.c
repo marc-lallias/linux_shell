@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu Apr 14 01:35:07 2016 Marc Lallias
-** Last update Wed May 11 00:23:58 2016 Marc Lallias
+** Last update Sun May 15 15:18:10 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -51,12 +51,12 @@ int	init_put_struct(t_put *put)
 {
   if (put->p1_stat == FULL)
     {
-      put->p1[0] = -1;
+      /* put->p1[0] = -1; */
       put->p1_stat = -1;
     }
   if (put->p2_stat == FULL)
     {
-      put->p2[0] = -1;
+      /* put->p2[0] = -1; */
       put->p2_stat = -1;
     }
   if (put->r_in != -1)

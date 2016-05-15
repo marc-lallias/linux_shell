@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sat Apr  9 18:03:46 2016 Marc Lallias
-** Last update Mon May  9 18:36:28 2016 Marc Lallias
+** Last update Sat May 14 18:27:58 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -53,35 +53,6 @@ t_exe	*insert_node(char **tab, t_exe *elem)
   return (new);
 }
 
-int	check_wrong_line(t_exe *exe, t_env *chevron, t_env *arg)
-{
-  if (chevron->next == NULL)
-    {
-      put_err("Unexpected: ");
-      put_err(chevron->data);
-      put_err("\n");
-      return (1);
-    }
-  if (((check_spliters(chevron->data)) == 1))
-    {
-      if (arg != chevron->next)
-	{
-	  put_err("Shouldn't found a: ");
-	  put_err(chevron->next->next->data);
-	  put_err("\n");
-	  return (1);
-	}
-    }
-  else if (arg != chevron->next->next)
-    {
-      put_err("Shouldn't found a: ");
-      put_err(chevron->next->next->data);
-      put_err("\n");
-      return (1);
-    }
-  return (0);
-}
-
 t_exe	*build_tree(t_exe *exe, t_env *chevron, t_env *arg)
 {
   if ((check_spliters(chevron->data)) == 1)
@@ -93,14 +64,18 @@ t_exe	*build_tree(t_exe *exe, t_env *chevron, t_env *arg)
     }
   else if ((check_redir(chevron->data)) == 1)
     {
-      if (chevron->next == NULL)
-	return (NULL);
-      if ((exe = insert_node(convert(chevron, chevron->next), exe)) == NULL)
-	return (NULL);
-      chevron = chevron->next;
-      if ((exe->left = insert_node(convert(chevron, chevron->next), exe))
+      if (chevron->next == NULL)/* la message erreur unxpected > */
+	{
+	  put_err("Unexected.\n");
+	  return (NULL);
+	}
+      if ((exe = insert_node(convert(chevron, chevron->next), exe))
 	  == NULL)
-	return (NULL);
+  	return (NULL);
+      chevron = chevron->next;
+      if ((exe = insert_node(convert(chevron, chevron->next), exe))
+	  == NULL)
+  	return (NULL);
       chevron = chevron->next;
     }
   if (arg != chevron)

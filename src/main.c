@@ -5,37 +5,10 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 00:15:15 2016 Marc Lallias
-** Last update Wed May 11 01:01:16 2016 Marc Lallias
+** Last update Sun May 15 14:15:25 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
-
-int	test_exit(char **argv, t_env **l_env, char *line)
-{
-  int	nb;
-
-  if ((match_n_match("exit", argv[0])) == 1)
-    {
-      if (argv[1] == NULL)
-	{
-	  free(line);
-	  my_free_tab(argv);
-	  free_env(*l_env);
-	  return (0);
-	}
-      if ((nb = my_exit(argv, l_env)) != -1)
-	{
-	  free(line);
-	  my_free_tab(argv);
-	  free_env(*l_env);
-	}
-      else
-	put_err("Exit requierre a well syntaxed number.\n");
-      return (nb);
-    }
-  else
-    return (-1);
-}
   
 int	prep_execution(char *line, t_env **l_env)
 {
@@ -49,7 +22,10 @@ int	prep_execution(char *line, t_env **l_env)
   to_do = exec_list(arg, *l_env);
   if (to_do == NULL || *(to_do->data_tab) == NULL)
       return (-1);
-  to_do = rev_exe_list(to_do);
+  to_do = make_graph(to_do);
+  if (to_do == NULL)
+    return (-1);
+  /* to_do = rev_exe_list(to_do); */
   /* if ((match_n_match(*(to_do->dat_tab, '&')) == 1) */
   /*   { */
   /*     untracked_fork(); */
@@ -64,12 +40,17 @@ int	prep_execution(char *line, t_env **l_env)
   /*     if (to_do->left) */
   /* 	{ */
   /* 	  printf("          LEFT:\n"); */
-  /* 	  my_show_tab(to_do->left->data_tab); */
+  /* 	  while (to_do->left) */
+  /* 	    { */
+  /* 	      printf("xxx\n"); */
+  /* 	      my_show_tab(to_do->left->data_tab); */
+  /* 	      to_do->left = to_do->left->right; */
+  /* 	    } */
   /* 	} */
   /*     to_do = to_do->right; */
   /*   } */
   start_put_struct(&curr);
-  do_list(to_do, l_env, &curr);
+  do_graph(to_do, l_env, &curr);
   close_put_struct(&curr);  /* free to_do */
   return (curr.ret);
 }

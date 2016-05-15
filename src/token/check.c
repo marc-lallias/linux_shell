@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sun May  1 15:43:15 2016 Marc Lallias
-** Last update Mon May  9 18:55:11 2016 Marc Lallias
+** Last update Fri May 13 16:50:03 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -14,27 +14,16 @@ int     check_signifiant(char *str)
 {
   if (str == NULL)
     return (1);
-  if ((check_build_in(str)) == 1)
-      return (1);
   if ((match_n_match("&&", str)) == 1)
     return (1);
   if ((match_n_match("||", str)) == 1)
-    return (1);
-  if ((match_n_match(">>", str)) == 1)
-    return (1);
-  if ((match_n_match("<<", str)) == 1)
-    return (1);
-  if ((match_n_match("<", str)) == 1)
-    return (1);
-  if ((match_n_match(">", str)) == 1)
-    return (1);
-  if ((match_n_match("|", str)) == 1)
     return (1);
   if ((match_n_match("&", str)) == 1)
     return (1);
   if ((match_n_match(";", str)) == 1)
     return (1);
   return (0);
+
 }
 
 int     check_spliters(char *str)

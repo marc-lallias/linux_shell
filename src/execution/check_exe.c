@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Fri May  6 21:11:00 2016 Marc Lallias
-** Last update Wed May 11 02:46:55 2016 Marc Lallias
+** Last update Sat May 14 18:39:13 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -39,6 +39,17 @@ char    *next_path(char *buff, char *try, char *arg1)
   return (NULL);
 }
 
+int	char_in(char to_found, char *found_in)
+{
+  while (*found_in)
+    {
+      if (to_found == *found_in)
+	return (1);
+      found_in++;
+    }
+  return (0);
+}
+
 int	try_all_path(char **str, t_env *l_env)
 {
   char  buff[PATH_MAX + 1];
@@ -67,29 +78,21 @@ int		check_exe(char **str, t_env *l_env)
 {
   struct stat	buff;
 
-  if ((access(*str, 0)) == F_OK)
-    return (1);
-  if ((stat(*str, &buff)) < 1)
+  if (char_in('/', *str) == 1)
     {
-      return (try_all_path(str, l_env));
+      if ((stat(*str, &buff)) < 1)
+	{
+	  if ((S_ISREG(buff.st_mode)) && buff.st_mode & S_IXUSR)
+	    {
+	      if ((access(*str, X_OK)) != F_OK)
+		{
+		  put_err(*str);
+		  put_err(" : No execution right\n");
+		  return (0);
+		}
+	      return (1);
+	    }
+	}
     }
-  else
-    return (-1);
-  /* if ((S_ISREG(buff.st_mode)) && buff.st_mode & S_IXUSR) */
-  /*   { */
-  /*     /\* printf("LA\n"); *\/ */
-  /*     return (1); */
-  /*   } */
-  /* else */
-  /*   { */
-  /*     /\* printf("ICI\n"); *\/ */
-  /*     if ((access(*str, X_OK)) != F_OK) */
-  /* 	{ */
-  /* 	  put_err("No execution right on: "); */
-  /* 	  put_err(*str); */
-  /* 	  put_err("\n"); */
-  /* 	  return (-1); */
-  /* 	} */
-    /* } */
-  return (0);
+  return (try_all_path(str, l_env));
 }

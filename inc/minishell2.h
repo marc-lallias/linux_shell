@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Wed May 11 00:23:20 2016 Marc Lallias
+** Last update Sun May 15 14:57:47 2016 Marc Lallias
 */
 
 #ifndef MINISHELL2_H_
@@ -13,7 +13,6 @@
 
 #include <fcntl.h>
 #include <linux/limits.h>
-#include "get_next_line.h"
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -21,6 +20,7 @@
 #include <unistd.h>
 
 #include <stdio.h>
+#include "get_next_line.h"
 
 #ifndef EMPTY
 # define EMPTY (1)
@@ -29,6 +29,14 @@
 #ifndef FULL
 # define FULL (0)
 #endif /* FULL */
+
+#ifndef FOR_READ
+# define FOR_READ (0)
+#endif /* FOR_READ */
+
+#ifndef FOR_WRITE
+# define FOR_WRITE (1)
+#endif /* FOR_WRITE */
 
 #ifndef BAD
 # define BAD (1)
@@ -86,6 +94,7 @@ t_exe		*choose_token(t_exe *to_do, t_env **l_env, t_put *curr);
 /* body/do_list.c */
 
 int		do_list(t_exe *to_do, t_env **l_env, t_put *curr);
+int		do_graph(t_exe *to_do, t_env **l_env, t_put *curr);
 
 /* build_in/cd.c */
 
@@ -127,9 +136,13 @@ int		check_exe(char **str, t_env *l_env);
 
 int		exec(char **argv, t_env **l_env, t_put *put);
 int		exec_bin(char **argv, t_env **l_env);
-int		father(int pid, t_put *put);
+int		father_wait(t_put *put);
 char		*next_path(char *buff, char *try, char *arg1);
 int		normal(char **argv, t_env **l_env, t_put *put);
+
+/* execution/make_graph.c */
+
+t_exe		*make_graph(t_exe *to_do);
 
 /* exection/parsing_token.c */
 
@@ -144,6 +157,8 @@ t_exe		*insert_node(char **tab, t_exe *elem);
 t_env		*rev_env_list(t_env *elem);
 t_exe		*rev_exe_list(t_exe *elem);
 int		env_list_len(t_env *l_env);
+t_exe		*put_in_exe(t_exe *elem);
+  
 
 /* manip/manip_string1.c */
 
@@ -194,6 +209,7 @@ int		my_getnbr(char *str);
 
 int             check_token(char *str);
 int		check_signifiant(char *str);
+int		check_redir(char *str);
 
 /* token/double_redir.c */
 
@@ -218,11 +234,6 @@ t_exe		*semi_colon(t_exe *to_do, t_env **l_env, t_put *curr);
 
 t_exe		*left_redir(t_exe *to_do, t_env **l_env, t_put *curr);
 t_exe		*right_redir(t_exe *to_do, t_env **l_env, t_put *curr);
-
-/* token/double_redir_right.c */
-
-t_exe		*double_redir_right(t_exe *to_do, t_env **l_env, t_put *curr);
-
 #endif /* MINISHELL2_H_ */
 
 /* checker si right cd */

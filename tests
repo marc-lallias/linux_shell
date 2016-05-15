@@ -278,7 +278,7 @@ TESTS=
   echo "cat result"
   echo "cat result2"
 [31-END]
-
+Wed May 11 17:13:01 2016
 [32]
 NAME="redirect output on input"
 SETUP="echo coucou > fic"
