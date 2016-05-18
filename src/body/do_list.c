@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu Apr 14 00:33:18 2016 Marc Lallias
-** Last update Wed May 18 17:18:21 2016 Marc Lallias
+** Last update Thu May 19 00:01:34 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -58,11 +58,11 @@ int	do_graph(t_exe *to_do, t_env **l_env, t_put *curr)
       else if ((match_n_match(*(to_do->data_tab), "&&") == 1)
 	       && (curr->ret == 0))
 	{
-	  curr->ret = do_list(to_do->left, l_env, curr);
+	    curr->ret = do_list(to_do->left, l_env, curr);
 	  /* free to_do->left */
 	}
       else if ((match_n_match(*(to_do->data_tab), "||") == 1)
-	       && (curr->ret != 0))
+	       && (curr->ret == 1))
 	{
 	  curr->ret = do_list(to_do->left, l_env, curr);
 	  /* free to_do->left */
