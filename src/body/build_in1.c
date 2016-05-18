@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 13:51:51 2016 Marc Lallias
-** Last update Tue May 10 21:50:49 2016 Marc Lallias
+** Last update Wed May 18 17:01:00 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -27,7 +27,7 @@ int	check_build_in(char *str)
   return (0);
 }
 
-int	buid_in(char **argv, t_env **l_env)
+int	build_in(char **argv, t_env **l_env)
 {
   if (argv != NULL)
     {

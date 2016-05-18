@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Sun May 15 14:57:47 2016 Marc Lallias
+** Last update Wed May 18 17:12:11 2016 Marc Lallias
 */
 
 #ifndef MINISHELL2_H_
@@ -18,8 +18,8 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
 #include <stdio.h>
+
 #include "get_next_line.h"
 
 #ifndef EMPTY
@@ -73,6 +73,12 @@ typedef	struct		s_exe
   struct s_exe		*right;
 }			t_exe;
 
+typedef struct		s_int
+{
+  int			data_int;
+  struct s_int		*next;
+}			t_int;
+
 /* aff/aff.c */
 
 int		aff_env_list(t_env *env);
@@ -83,6 +89,7 @@ void		put_err(char *str);
 
 /* body/build_in1.c */
 
+int		build_in(char **argv, t_env **l_env);
 int		build_in_child(char **argv, t_env **l_env);
 int		build_in_father(char **argv, t_env **l_env);
 int		check_build_in(char *str);
@@ -132,11 +139,14 @@ int		close_father(t_put *put);
 
 int		check_exe(char **str, t_env *l_env);
 
+/* execution/father_wait.c */
+
+int		father_wait(t_int *l_pid);
+
 /* exection/lamba.c */
 
 int		exec(char **argv, t_env **l_env, t_put *put);
 int		exec_bin(char **argv, t_env **l_env);
-int		father_wait(t_put *put);
 char		*next_path(char *buff, char *try, char *arg1);
 int		normal(char **argv, t_env **l_env, t_put *put);
 
@@ -157,6 +167,7 @@ t_exe		*insert_node(char **tab, t_exe *elem);
 t_env		*rev_env_list(t_env *elem);
 t_exe		*rev_exe_list(t_exe *elem);
 int		env_list_len(t_env *l_env);
+t_int		*put_in_int(t_int *elem);
 t_exe		*put_in_exe(t_exe *elem);
   
 
@@ -223,8 +234,7 @@ int		start_put_struct(t_put *put);
 int		init_put_struct(t_put *put);
 
 /* token/pipe_shell.c */
-
-t_exe		*pipe_shell(t_exe *to_do, t_env **l_env, t_put *curr);
+int		pipe_shell(t_exe *to_do, t_env **l_env, t_put *curr);
 
 /* token/semi_colon.c */
 
@@ -239,3 +249,5 @@ t_exe		*right_redir(t_exe *to_do, t_env **l_env, t_put *curr);
 /* checker si right cd */
 
 /* checker si arv > ARG_MAX dans lambda ou parsing_token */
+
+/* Parseur "PEG" (generateur du paseur). */
