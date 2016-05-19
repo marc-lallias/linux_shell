@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sat May 14 18:19:56 2016 Marc Lallias
-** Last update Wed May 18 17:04:22 2016 Marc Lallias
+** Last update Thu May 19 01:25:01 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -26,13 +26,14 @@ t_exe	*handle_executable(t_exe *to_do, t_env *l_env, t_put *curr)
     {
       curr->argv = NULL;
       put_err(*(to_do->data_tab));
-      put_err(" : Command not found.\n");
-      curr->ret = -1;
+      put_err(": Command not found.\n");
+      curr->ret = 1;
       return (to_do);
     }
   else if (ret == -1)
     {
       /* free(first_to_do); */
+      curr->ret = 1;
       curr->argv = NULL;
       return (NULL);
     }
@@ -48,7 +49,7 @@ t_exe	*choose_token(t_exe *to_do, t_env **l_env, t_put *curr)
     {
       /* if ((match_n_match(*(to_do->data_tab), "|")) == 1) */
       /* 	return ((pipe_shell(to_do, l_env, curr))); */
-      if ((match_n_match(*(to_do->data_tab), "<")) == 1)
+      if ((match_n_match(*(to_do->right->data_tab), "<")) == 1)
 	return ((left_redir(to_do, l_env, curr)));
       if ((match_n_match(*(to_do->right->data_tab), ">")) == 1)
 	return ((right_redir(to_do, l_env, curr)));

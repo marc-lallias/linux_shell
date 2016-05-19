@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu Apr 14 01:35:07 2016 Marc Lallias
-** Last update Sun May 15 15:18:10 2016 Marc Lallias
+** Last update Thu May 19 00:46:35 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -43,7 +43,6 @@ int	init_put_struct2(t_put *put)
       close(put->rr_out);
       put->rr_out = -1;
     }
-  put->ret = 0;
   return (0);
 }
 

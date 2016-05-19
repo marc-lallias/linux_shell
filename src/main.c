@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 00:15:15 2016 Marc Lallias
-** Last update Sun May 15 14:15:25 2016 Marc Lallias
+** Last update Thu May 19 00:49:56 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
@@ -74,6 +74,7 @@ int	prompt(t_env **l_env, char *buff)
       /* my_free_tab(argv); */
     }
   my_putchar('\n', 1);
+  /* printf("ret: %d\n", ret); */
   return (ret);
 }
 

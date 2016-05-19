@@ -6,13 +6,16 @@ fail
 inc
 ls
 Makefile
+mdr
 moul.sh
 note
 num
 prog.c
+ptdr
 ret:
 seg
 src
 succ
 tcsh
 tests
+xyz

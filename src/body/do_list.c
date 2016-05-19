@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu Apr 14 00:33:18 2016 Marc Lallias
-** Last update Thu May 19 00:01:34 2016 Marc Lallias
+** Last update Thu May 19 00:50:56 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -70,5 +70,6 @@ int	do_graph(t_exe *to_do, t_env **l_env, t_put *curr)
       init_put_struct(curr);
       to_do = to_do->right;
     }
-  return (0);
+  /* printf("curr->ret: %d\n", curr->ret); */
+  return (curr->ret);
 }
