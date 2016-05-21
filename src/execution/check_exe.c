@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Fri May  6 21:11:00 2016 Marc Lallias
-** Last update Sat May 14 18:39:13 2016 Marc Lallias
+** Last update Fri May 20 18:01:56 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -80,15 +80,16 @@ int		check_exe(char **str, t_env *l_env)
 
   if (char_in('/', *str) == 1)
     {
-      if ((stat(*str, &buff)) < 1)
+      if ((stat(*str, &buff)) < 1)/* wtf check stat */
 	{
-	  if ((S_ISREG(buff.st_mode)) && buff.st_mode & S_IXUSR)
+	  if ((S_ISREG(buff.st_mode)))
 	    {
+	      /* printf("LAAA\n"); */
 	      if ((access(*str, X_OK)) != F_OK)
 		{
 		  put_err(*str);
 		  put_err(" : No execution right\n");
-		  return (0);
+		  return (2);
 		}
 	      return (1);
 	    }

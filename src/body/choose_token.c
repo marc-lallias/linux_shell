@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sat May 14 18:19:56 2016 Marc Lallias
-** Last update Thu May 19 01:25:01 2016 Marc Lallias
+** Last update Fri May 20 18:00:48 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -30,12 +30,17 @@ t_exe	*handle_executable(t_exe *to_do, t_env *l_env, t_put *curr)
       curr->ret = 1;
       return (to_do);
     }
-  else if (ret == -1)
+  if (ret == -1)
     {
       /* free(first_to_do); */
       curr->ret = 1;
       curr->argv = NULL;
       return (NULL);
+    }
+  if (ret == 2)
+    {
+      curr->argv = NULL;
+      return (to_do);
     }
   /* printf("GOOD\n"); */
   curr->argv = to_do->data_tab;

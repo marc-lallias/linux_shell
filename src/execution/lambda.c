@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Apr  6 01:21:21 2016 Marc Lallias
-** Last update Wed May 18 17:08:34 2016 Marc Lallias
+** Last update Sat May 21 02:55:55 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -57,7 +57,10 @@ int	normal(char **argv, t_env **l_env, t_put *put)
   int	ret;
 
   if ( argv == NULL)
-    return (1);
+    {/* non mais lol doit quand meme close mdr */
+      close_father(put);/* check si regle le pb du test 25 */
+      return (1);
+    }
   pid = fork();
   if (pid == -1)
     {

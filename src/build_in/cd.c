@@ -5,51 +5,78 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 21:09:32 2016 Marc Lallias
-** Last update Mon May  9 18:57:59 2016 Marc Lallias
+** Last update Fri May 20 18:28:18 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
-int	move(char *to_go, t_env **l_env)
+int		do_move(char *to_go, struct stat st)
 {
-  char	*pwd;
-  char	buff[PATH_MAX + 1];
-
-  if(access(to_go, F_OK | R_OK) == -1)
+  if (S_ISDIR(st.st_mode))
     {
-      put_err("No access\n");
+      if ((chdir(to_go)) == -1)
+	{
+	  put_err("Chdir failed.\n");
+	  return (1);
+	}
       return (0);
     }
-  pwd = getcwd(buff, PATH_MAX);
-  if ((chdir(to_go)) == -1)
+  if (S_ISREG(st.st_mode))
     {
-      put_err("Repository doesn't exist.\n");
-      return (0);
+      put_err("No file or directory\n");
+      return (1);
     }
-  change_env(l_env, "OLDPWD", pwd);
-  pwd = getcwd(buff, PATH_MAX);
-  change_env(l_env, "PWD", pwd);
-  return (1);
+  else
+    {
+      put_err("No file or directory\n");
+      return (1);
+    }
+  return (0);
 }
 
-char	*concat_home(char *str, t_env *l_env, char *buff)
+int		move(char *to_go, t_env **l_env)
 {
-  char	*home;
+  struct stat	st;
+  char		*pwd;
+  char		buff[PATH_MAX + 1];
+
+  if ((stat(to_go, &st)) >= 1)
+    return (1);
+  if ((pwd = getcwd(buff, PATH_MAX)) == NULL)
+    {
+      put_err("getcwd failed.\n");
+      return (1);
+    }
+  if (do_move(to_go, st) == 1)
+    return (1);
+  change_env(l_env, "OLDPWD", pwd);
+  if ((pwd = getcwd(buff, PATH_MAX)) == NULL)
+    {
+      put_err("getcwd failed.\n");
+      return (1);
+    }
+  change_env(l_env, "PWD", pwd);
+  return (0);
+}
+
+char		*concat_home(char *str, t_env *l_env, char *buff)
+{
+  char		*home;
 
   home = my_getenv(l_env, "HOME");
   if (str[1] == '/')
-  {
-    my_strcopy(buff, home);
-    my_strcat(buff, str + 1);
-    return (buff);
-  }
+    {
+      my_strcopy(buff, home);
+      my_strcat(buff, str + 1);
+      return (buff);
+    }
   return (home);
 }
 
-int	my_cd(char **argv, t_env **l_env)
+int		my_cd(char **argv, t_env **l_env)
 {
-  char	*to_go;
-  char	buff[PATH_MAX];
+  char		*to_go;
+  char		buff[PATH_MAX];
 
   if (argv[1] == NULL)
     return (0);

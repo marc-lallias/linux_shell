@@ -5,14 +5,14 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu Apr 14 00:33:18 2016 Marc Lallias
-** Last update Thu May 19 00:50:56 2016 Marc Lallias
+** Last update Sat May 21 02:47:37 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
 
 int		do_list(t_exe *to_do, t_env **l_env, t_put *curr)
-{
+{/* plus logique faire recursive si pipe et direct les redirection dedans */
   t_int		*l_pid;
   /* gerer a ce niveau le & */
   l_pid = NULL;
@@ -24,7 +24,7 @@ int		do_list(t_exe *to_do, t_env **l_env, t_put *curr)
 	  l_pid->data_int = pipe_shell(to_do, l_env, curr);
 	}
       else if ((to_do = choose_token(to_do, l_env, curr)) == NULL)
-	return (1);
+	return (1);/* faire return int -1 = return 1 */
       if (to_do)
 	to_do = to_do->right;
     }
