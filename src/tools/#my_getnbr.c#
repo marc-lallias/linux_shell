@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Tue Apr 12 18:39:56 2016 Marc Lallias
-** Last update Tue May 24 22:13:30 2016 Marc Lallias
+** Last update Tue May 24 14:35:56 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -16,12 +16,12 @@ int	my_getnbr(char *str, int *ret)
   int	sign;
 
   tot = 0;
-  sign = 1;
+  signe = 1;
   if (str == NULL)
     return (0);
   if (*str == '-')
     {
-      sign = -1;
+      signe = -1;
       str++;
     }
   while (*str) /* check valeur max */

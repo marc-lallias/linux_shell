@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 13:51:51 2016 Marc Lallias
-** Last update Wed May 18 17:01:00 2016 Marc Lallias
+** Last update Tue May 24 15:17:07 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -41,8 +41,8 @@ int	build_in(char **argv, t_env **l_env)
 	  return ((my_cd(argv, l_env)));
       if ((match_n_match(argv[0], "echo")) == 1)
 	return ((my_echo(argv, l_env)));
-      if ((match_n_match(argv[0], "exit")) == 1)
-	  return ((my_exit(argv, l_env)));
+      /* if ((match_n_match(argv[0], "exit")) == 1) */
+      /* 	  return ((my_exit(argv, l_env))); */
     }
   return (-1);
 }

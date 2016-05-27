@@ -5,22 +5,23 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Tue Apr 12 18:35:25 2016 Marc Lallias
-** Last update Sat May 21 02:41:56 2016 Marc Lallias
+** Last update Thu May 26 13:23:37 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
-int	my_exit(char **argv, t_env **l_env)
+int	my_exit(char **argv, int *err)
 {
   int	ret;
   int	nb;
 
-  my_put_str("exit\n");
-  if ((ret = my_getnbr(argv[1])) == -1)
+  *err = 0;
+  ret = my_getnbr(argv[1], err);
+  printf("In exit nb: %d  ret: %d\n", ret, *err);
+  if (*err == 1)
     {
       my_put_str("Exit: Invalid input.\n");
       return (1);
     }
-  exit(ret);
-  return (1);
+  return (ret);
 }

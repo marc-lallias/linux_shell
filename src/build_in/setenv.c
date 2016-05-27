@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 14:03:15 2016 Marc Lallias
-** Last update Sun Apr 10 14:51:21 2016 Marc Lallias
+** Last update Tue May 24 20:18:44 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -46,20 +46,21 @@ int	my_setenv(char **argv, t_env **l_env)
 
   if (argv[1] != NULL)
     {
+
       elem = cherch_in_env(*l_env, argv[1]);
       if (elem == NULL)
 	{
 	  if ((*l_env = new_env_elem(*l_env, argv)) == NULL)
-	    return (0);
+	    return (1);
 	}
       else
 	{
 	  if ((modifie_env_elem(elem, argv)) == NULL)
-	    return (0);
+	    return (1);
 	}
     }
   else
-    put_err("Not enougth argument.\n");
-  return (1);
+    aff_env_list(*l_env);
+  return (0);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Wed May 18 17:12:11 2016 Marc Lallias
+** Last update Fri May 27 18:46:35 2016 Marc Lallias
 */
 
 #ifndef MINISHELL2_H_
@@ -19,6 +19,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <limits.h>
 
 #include "get_next_line.h"
 
@@ -38,13 +39,21 @@
 # define FOR_WRITE (1)
 #endif /* FOR_WRITE */
 
-#ifndef BAD
-# define BAD (1)
-#endif /* EMPTY */
+#ifndef UN_NORMAL
+# define UN_NORMAL (1)
+#endif /* UN_NORMAL */
 
 #ifndef NORMAL
 # define NORMAL (0)
 #endif /* FULL */
+
+#ifndef NEED_EXIT
+# define NEED_EXIT (1)
+#endif /* NEED_EXIT */
+
+#ifndef NO_EXIT
+# define NO_EXIT (0)
+#endif /* NO_EXIT */
 
 typedef struct		s_put
 {
@@ -58,6 +67,7 @@ typedef struct		s_put
   int			rr_in;
   int			rr_out;
   int			ret;
+  int			exit_stat;
 }			t_put;
 
 typedef struct		s_env
@@ -127,7 +137,7 @@ int		my_unsetenv(char **argv, t_env **l_env);
 
 /* build_in/exit.c */
 
-int		my_exit(char **argv, t_env **l_env);
+int		my_exit(char **argv, int *err);/* faire int *ret */
 
 /* execution/apply_redirection.c */
 
@@ -160,7 +170,7 @@ t_exe		*build_list_exec(t_env *com, t_exe *elem);
 int		check_all_token(char *str);
 int		check_spliters(char *str);
 t_exe		*exec_list(t_env *com, t_env *env);
-t_exe		*insert_node(char **tab, t_exe *elem);
+t_exe		*insert(char **tab, t_exe *elem);
 
 /* list.c */
 
@@ -214,7 +224,7 @@ char		*pass_to(char *line, char to_pass);
 
 /* tools/my_getnbr.c */
 
-int		my_getnbr(char *str);
+int		my_getnbr(char *str, int *err);
 
 /* token/check.c */
 
@@ -251,3 +261,5 @@ t_exe		*right_redir(t_exe *to_do, t_env **l_env, t_put *curr);
 /* checker si arv > ARG_MAX dans lambda ou parsing_token */
 
 /* Parseur "PEG" (generateur du paseur). */
+
+/* scac > | fait seg */

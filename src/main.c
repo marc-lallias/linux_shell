@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 00:15:15 2016 Marc Lallias
-** Last update Thu May 19 00:49:56 2016 Marc Lallias
+** Last update Tue May 24 15:52:25 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
@@ -51,6 +51,12 @@ int	prep_execution(char *line, t_env **l_env)
   /*   } */
   start_put_struct(&curr);
   do_graph(to_do, l_env, &curr);
+  /* FREE TO_DO */
+  if (curr.exit_stat == NEED_EXIT)
+    {
+       my_put_str("exit\n");
+      exit (curr.ret);
+    }
   close_put_struct(&curr);  /* free to_do */
   return (curr.ret);
 }
