@@ -6,12 +6,12 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sat Apr  9 18:03:46 2016 Marc Lallias
-** Last update Fri May 27 18:45:47 2016 Marc Lallias
+** Last update Fri Jun  3 03:36:59 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
-char	**convert(t_env *start, t_env *end)
+static char	**convert(t_env *start, t_env *end)
 {
   t_env	*first;
   char	**tab;
@@ -30,7 +30,8 @@ char	**convert(t_env *start, t_env *end)
     return (NULL);
   while (first != end)
     {
-      *tab = put_in_arg(first->data, my_strlen(first->data));
+      if ((*tab = put_in_arg(first->data, my_strlen(first->data))) == NULL)
+	return (NULL);
       first = first->next;
       tab++;
     }
@@ -39,10 +40,12 @@ char	**convert(t_env *start, t_env *end)
   return (tab);
 }
 
-t_exe	*insert(char **tab, t_exe *elem)
+static t_exe	*insert(char **tab, t_exe *elem)
 {
   t_exe	*new;
 
+  if (tab == NULL)
+    return (NULL);
   if ((new = malloc(sizeof(t_exe))) == NULL)
     return (NULL);
   new->left = NULL;
@@ -54,21 +57,21 @@ t_exe	*insert(char **tab, t_exe *elem)
   return (new);
 }
 
-int	check_validity_token(t_env *chevron)
+static int	check_validity_token(t_env *chevron)
 {
-  if (chevron->next == NULL)/* la message erreur unxpected > */
+  if (chevron->next == NULL)
     {
       put_err(chevron->data);
       put_err(" :Unexected.\n");
       return (1);
     }
-  if (check_spliters(chevron->next->data) == 1)/*lamessage erreur unxpected >*/
+  if (check_spliters(chevron->next->data) == 1)
     {
       put_err(chevron->data);
       put_err(" :Unexected.\n");
       return (1);
     }
-  if (check_redir(chevron->next->data) == 1)/* la message erreur unxpected > */
+  if (check_redir(chevron->next->data) == 1)
     {
       put_err(chevron->data);
       put_err(" :Unexected.\n");
@@ -76,7 +79,7 @@ int	check_validity_token(t_env *chevron)
     }
   return (0);
 }
-t_exe	*build_tree(t_exe *exe, t_env *chevron, t_env *arg)
+static t_exe	*build_tree(t_exe *exe, t_env *chevron, t_env *arg)
 {
   if ((check_spliters(chevron->data)) == 1)
     {
@@ -105,33 +108,28 @@ t_exe	*build_tree(t_exe *exe, t_env *chevron, t_env *arg)
   return (exe);
 }
 
-t_exe	*exec_list(t_env *arg, t_env *l_env)/* ajouter first */
+t_exe		*exec_list(t_env *arg, t_env *l_env)/* ajouter first */
 {
-  t_env	*chevron;
-  t_exe	*exe;
-  int	ret;
+  t_env		*chevron;
+  t_exe		*previous;
+  t_exe		*exe;
 
   exe = NULL;
-  ret = 1;
   chevron = arg;
-  /* if (((check_build_in(arg->data)) != 1) */
-  /*     && ((check_exe(&(arg->data), l_env)) == -1)) */
-  /*   return (NULL); */
   while (arg != NULL)
     {
       arg = arg->next;
       if ((arg == NULL) || ((check_redir(arg->data)) == 1)
 	  || ((check_spliters(arg->data)) == 1))
 	{
-	  exe = build_tree(exe, chevron, arg);
-	  if (exe == NULL)
+	  previous = exe;
+	  if ((exe = build_tree(exe, chevron, arg)) == NULL)
 	    {
-	      /* free(first); */
-	    return (NULL);
+	      free_t_exe(previous);
+	      return (NULL);
 	    }
 	  chevron = arg;
 	}
     }
-/* return avant rev list pour voir si & a la fin */
   return (exe);
 }

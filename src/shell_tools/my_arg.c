@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sat Apr  2 03:23:28 2016 Marc Lallias
-** Last update Wed May 11 01:24:22 2016 Marc Lallias
+** Last update Fri Jun  3 04:13:46 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -34,7 +34,7 @@ char		*put_in_arg(char *str, int size)
     {
       if ((*str == '"' || *str == 39) && limit == 0)
 	limit = *str;
-      if (*str != limit || limit == 0)
+      if ((*str != limit) || (limit == 0))
 	{
 	  *new = *str;
 	  new++;
@@ -56,28 +56,27 @@ char		*define_arg_content(char *com)
 	{
 	  com = pass_to(com + 1, *com);
 	  if (*com == '\0')
-	  {
-	    put_err("Not matches\n");
-	    return (NULL);
-	  }
+	    {
+	      put_err("Not matches\n");
+	      return (NULL);
+	    }
 	}
       if (*com == ' ' || *com == '\t')
-	  return (com);
+	return (com);
       if ((ret = check_token(com)) != 0)
-	  return (com + ret);
+	return (com + ret);
       if ((check_token(com + 1)) != 0)
 	return (com + 1);
-
       com++; 
     }
   return (com);
 }
 
-t_env		*pars_commande(t_env *arg, char **com)
+static t_env		*pars_commande(t_env *arg, char **com)
 {
-  char		*chevron;
-  char		*line;
-  
+  char			*chevron;
+  char			*line;
+
   chevron = *com;
   if ((*com = define_arg_content(*com)) == NULL)
     {
@@ -86,20 +85,19 @@ t_env		*pars_commande(t_env *arg, char **com)
     }
   if ((line = malloc((*com - chevron) + 1)) == NULL)
     return (NULL);
-  /* check globing si c est est un retourn son arg (a l'envers) */
   line = my_str_n_copy(line, chevron, *com - chevron);
   if ((arg = make_env_list(arg, NULL)) == NULL)
     return (NULL);
   arg->data = line;
-  *com = pass_arg(*com);/* y avait un check '\0' */
+  *com = pass_arg(*com);
   return (arg);
 }
 
-t_env		*my_argv(char *com)
+t_env			*my_argv(char *com)
 {
-  t_env		*arg;
-  char		**argv;
-  char		*line;
+  t_env			*arg;
+  char			**argv;
+  char			*line;
 
   arg = NULL;
   if (com)

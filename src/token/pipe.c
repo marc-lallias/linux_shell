@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Tue Apr 12 13:45:29 2016 Marc Lallias
-** Last update Tue May 17 13:47:34 2016 Marc Lallias
+** Last update Tue May 31 16:36:41 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -40,6 +40,5 @@ int	pipe_shell(t_exe *to_do, t_env **l_env, t_put *curr)
       init_put_struct(curr);
       curr->p2_stat = FULL;
     }
-  /* curr->argv = to_do->left->data_tab; */
   return (ret);
 }

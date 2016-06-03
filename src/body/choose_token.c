@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sat May 14 18:19:56 2016 Marc Lallias
-** Last update Thu May 26 13:39:01 2016 Marc Lallias
+** Last update Fri Jun  3 06:10:02 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -39,6 +39,18 @@ t_exe	*handle_executable(t_exe *to_do, t_env **l_env, t_put *curr)
 {
   int	ret;
 
+  if (match_n_match(*(to_do->data_tab), "env"))
+    {
+      if (to_do->data_tab[1] && match_n_match((to_do->data_tab)[1], "-i"))
+	{
+	  free(to_do->data_tab[0]);
+	  to_do->data_tab[0] = NULL;
+	  free(to_do->data_tab[1]);
+	  to_do->data_tab[1] = NULL;
+	  to_do->data_tab = &(to_do->data_tab[2]);
+	  curr->env = NO_ENV;
+	}
+    }
   if (check_build_in(*(to_do->data_tab)) != 1)
     {
       ret = check_exe(to_do->data_tab, *l_env);
@@ -51,11 +63,8 @@ t_exe	*handle_executable(t_exe *to_do, t_env **l_env, t_put *curr)
 
 t_exe	*choose_token(t_exe *to_do, t_env **l_env, t_put *curr)
 {
-  /* secur pour le to_do->right */
   if (to_do->right != NULL)
     {
-      /* if ((match_n_match(*(to_do->data_tab), "|")) == 1) */
-      /* 	return ((pipe_shell(to_do, l_env, curr))); */
       if ((match_n_match(*(to_do->right->data_tab), "<")) == 1)
 	return ((left_redir(to_do, l_env, curr)));
       if ((match_n_match(*(to_do->right->data_tab), ">")) == 1)

@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 13:51:51 2016 Marc Lallias
-** Last update Tue May 24 15:17:07 2016 Marc Lallias
+** Last update Sat May 28 13:44:26 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -32,7 +32,7 @@ int	build_in(char **argv, t_env **l_env)
   if (argv != NULL)
     {
       if ((match_complet(argv[0], "env")) == 1)
-	  return ((aff_env_list(*l_env)));
+	return (aff_env_list(*l_env));
       if ((match_n_match(argv[0], "setenv")) == 1)
 	return ((my_setenv(argv, l_env)));
       if ((match_n_match(argv[0], "unsetenv")) == 1)

@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu Mar 31 15:35:34 2016 Marc Lallias
-** Last update Mon Apr  4 00:29:33 2016 Marc Lallias
+** Last update Fri Jun  3 04:05:43 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -91,7 +91,7 @@ t_env	*env_dup(char **env)
       if (elem == NULL)
 	{
 	  put_err("Malloc: in env_dup.");
-	  exit(EXIT_FAILURE);
+	  return (NULL);
 	}
       env++;
     }

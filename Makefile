@@ -5,7 +5,7 @@
 ## Login   <lallia_m@epitech.net>
 ## 
 ## Started on  Sun Apr  3 23:58:58 2016 Marc Lallias
-## Last update Wed May 18 13:59:26 2016 Marc Lallias
+## Last update Fri Jun  3 06:10:43 2016 Marc Lallias
 ##
 
 NAME	=	42sh
@@ -15,6 +15,7 @@ SRC	=	./src/main.c				\
 		./src/body/build_in1.c			\
 		./src/body/choose_token.c		\
 		./src/body/do_list.c			\
+		./src/body/leav.c			\
 		./src/build_in/cd.c			\
 		./src/build_in/my_echo.c		\
 		./src/build_in/exit.c			\
@@ -26,6 +27,7 @@ SRC	=	./src/main.c				\
 		./src/execution/lambda.c		\
 		./src/execution/make_graph.c		\
 		./src/execution/parsing_token.c		\
+		./src/free.c				\
 		./src/list.c				\
 		./src/manipulation/manip_tab1.c		\
 		./src/manipulation/manip_string1.c	\

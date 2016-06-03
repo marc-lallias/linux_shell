@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sun Apr  3 23:52:03 2016 Marc Lallias
-** Last update Tue May 17 13:45:59 2016 Marc Lallias
+** Last update Fri Jun  3 04:37:55 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
@@ -73,7 +73,7 @@ t_int	*put_in_int(t_int *elem)
   return (new);
 }
 
-int	env_list_len(t_env *env)
+int	env_list_len(const t_env *env)
 {
   int	size;
 

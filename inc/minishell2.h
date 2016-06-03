@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Fri May 27 18:46:35 2016 Marc Lallias
+** Last update Fri Jun  3 04:45:24 2016 Marc Lallias
 */
 
 #ifndef MINISHELL2_H_
@@ -55,6 +55,14 @@
 # define NO_EXIT (0)
 #endif /* NO_EXIT */
 
+#ifndef ENV
+# define ENV (1)
+#endif /* NEED_EXIT */
+
+#ifndef NO_ENV
+# define NO_ENV (0)
+#endif /* NO_ENV */
+
 typedef struct		s_put
 {
   char			**argv;
@@ -68,6 +76,7 @@ typedef struct		s_put
   int			rr_out;
   int			ret;
   int			exit_stat;
+  int			env;
 }			t_put;
 
 typedef struct		s_env
@@ -91,8 +100,8 @@ typedef struct		s_int
 
 /* aff/aff.c */
 
-int		aff_env_list(t_env *env);
-void		my_putchar(char c, int outpout);
+int		aff_env_list(const t_env *env);
+void		my_putchar(const char c, int outpout);
 void		my_put_str(char *str);
 void		my_show_tab(char **str);
 void		put_err(char *str);
@@ -113,6 +122,10 @@ t_exe		*choose_token(t_exe *to_do, t_env **l_env, t_put *curr);
 int		do_list(t_exe *to_do, t_env **l_env, t_put *curr);
 int		do_graph(t_exe *to_do, t_env **l_env, t_put *curr);
 
+/* body/leav.c */
+
+int		leav_shell(t_int *l_pid, t_put *curr);
+
 /* build_in/cd.c */
 
 int		move(char *to_go, t_env **l_env);
@@ -125,9 +138,7 @@ int		my_echo(char **argv, t_env **l_env);
 
 /* build_in/setenv.c */
 
-t_env		*modifie_env_elem(t_env *elem, char **argv);
 int		my_setenv(char **argv, t_env **l_env);
-t_env		*new_env_elem(t_env *elem, char**argv);
 
 /* build_in/unsetenv.c */
 
@@ -151,12 +162,12 @@ int		check_exe(char **str, t_env *l_env);
 
 /* execution/father_wait.c */
 
-int		father_wait(t_int *l_pid);
+int		father_wait(t_int *l_pid, t_put *curr);
 
 /* exection/lamba.c */
 
-int		exec(char **argv, t_env **l_env, t_put *put);
-int		exec_bin(char **argv, t_env **l_env);
+int		exec(char **argv, t_env **l_env, char **env, t_put *put);
+int		exec_bin(char **argv, char **env);
 char		*next_path(char *buff, char *try, char *arg1);
 int		normal(char **argv, t_env **l_env, t_put *put);
 
@@ -166,32 +177,34 @@ t_exe		*make_graph(t_exe *to_do);
 
 /* exection/parsing_token.c */
 
-t_exe		*build_list_exec(t_env *com, t_exe *elem);
-int		check_all_token(char *str);
 int		check_spliters(char *str);
 t_exe		*exec_list(t_env *com, t_env *env);
-t_exe		*insert(char **tab, t_exe *elem);
+
+/* free.c */
+
+void		free_t_int(t_int *elem);
+void		free_t_exe(t_exe *elem);
 
 /* list.c */
 
 t_env		*rev_env_list(t_env *elem);
-t_exe		*rev_exe_list(t_exe *elem);
-int		env_list_len(t_env *l_env);
+int		env_list_len(const t_env *l_env);
 t_int		*put_in_int(t_int *elem);
 t_exe		*put_in_exe(t_exe *elem);
   
-
 /* manip/manip_string1.c */
 
-char		*my_strcat(char *dest, char *source);
-char		*my_strcopy(char *dest, char *source);
+char		*my_strcat(char *dest, const char *source);
+char		*my_strcopy(char *dest, const char *source);
 int		my_strlen(char *str);
+char		*my_str_n_copy(char *dest, const char *src, int size);
+
 
 /* manip/manip_tab1.c */
 
+int		my_tab_len(char **tab);
 void		my_free_tab(char **tab);
 char		**my_realloc_tab(char **tab, int size);
-char		*my_str_n_copy(char *dest, char *src, int size);
 
 /* match_n_match.c */
 
@@ -204,7 +217,6 @@ int		match_n_match(char *to_find, char *find_in);
 char		*define_arg_content(char *com);
 t_env		*my_argv(char *com);
 char            *pass_arg(char *str);
-t_env           *pars_commande(t_env *argv, char **com);
 char		*put_in_arg(char *str, int size);
 
 /* shell_tool/env.c */

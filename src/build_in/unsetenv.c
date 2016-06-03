@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 16:58:19 2016 Marc Lallias
-** Last update Mon May 23 15:37:05 2016 Marc Lallias
+** Last update Fri Jun  3 04:49:52 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -39,7 +39,7 @@ int		check_all(char *to_del, t_env *elem)
       free_env_elem(elem->next);
       elem->next = NULL;
     }
-  return (1);
+  return (0);
 }
 
 int		my_unsetenv(char **argv, t_env **l_env)
@@ -51,7 +51,7 @@ int		my_unsetenv(char **argv, t_env **l_env)
       put_err("Need at list one argument.\n");
       return (1);
     }
-  if (l_env == NULL)
+  if (*l_env == NULL)
     {
       put_err("Need env.\n");
       return (1);

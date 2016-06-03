@@ -5,74 +5,60 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Apr  6 01:21:21 2016 Marc Lallias
-** Last update Sat May 21 02:55:55 2016 Marc Lallias
+** Last update Fri Jun  3 06:01:52 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
-int	exec_bin(char **argv, t_env **l_env)
+int	exec_bin(char **argv, char **env)
 {
-  /* char	buff[PATH_MAX + 1]; */
   char	*try;
-  char	**env;
 
-  /* *buff = '\0'; */
-  env = build_env(*l_env);
-  if (env == NULL)
-    exit(EXIT_FAILURE);
-  if ((access(argv[0], X_OK)) == F_OK) /* check ARG_MAX */
-    execve(argv[0], argv, env);
-  /* if ((try = my_getenv(*l_env, "PATH")) == NULL) */
-  /*   { */
-  /*     put_err("No PATH in env\n"); */
-  /*     exit(EXIT_FAILURE); */
-  /*   } */
-  /* while ((try = next_path(buff, try, argv[0])) != NULL) */
-  /*   { */
-  /*     if ((access(buff, X_OK)) == F_OK) */
-  /* 	  execve(buff, argv, env); */
-  /*   } */
-  /* put_err(argv[0]); */
-  /* put_err(" : commande introuvable\n"); */
-  exit(EXIT_FAILURE);
-  return (1);
+  if (my_tab_len(argv) >= ARG_MAX)
+    {
+      put_err("More argument than ARG_MAX.\n");
+      return (1);
+    }
+  if ((access(argv[0], X_OK)) == F_OK)
+    return (execve(argv[0], argv, env));
+  exit(1);
 }
 
-int	exec(char **argv, t_env **l_env, t_put *put)
+int	exec(char **argv, t_env **l_env,  char **env, t_put *put)
 {
   int	ret;
 
-  /* printf("la\n"); */
-  /* exit(42); */
-  apply_redirection(put);/* gestion dup si return -1 aff dup fail */
-  if ((ret = build_in(argv, l_env)) != -1)
-    exit(EXIT_SUCCESS);
-  return (exec_bin(argv, l_env));
+  if (apply_redirection(put))
+    if ((ret = build_in(argv, l_env)) != -1)
+	exit(EXIT_SUCCESS);/* parreile voir remplacer par return */
+  return (exec_bin(argv, env));
 }
 
 int	normal(char **argv, t_env **l_env, t_put *put)
 {
   int   child;
   int	pid;
-  int	ret;
+  char	**env;
 
+  env = NULL;
   if ( argv == NULL)
-    {/* non mais lol doit quand meme close mdr */
-      close_father(put);/* check si regle le pb du test 25 */
+    {
+      if (close_father(put) == -1)
+	return (-1);
       return (1);
     }
+  if ((put->env == ENV) && (env = build_env(*l_env)) == NULL)
+    return (1);
   pid = fork();
   if (pid == -1)
-    {
-      put_err("can't fork\n");
-      return (-1);
-    }
+    return (1);
   if (pid == 0)
-    exec(argv, l_env, put);
+    exec(argv, l_env, env, put);
   else
-    close_father(put);
-  /* else */
-  /*   return (father(put)); */
-  /* printf("pid dans fork pere: %d\n", pid); */
+    {
+      my_free_tab(env);
+      if (close_father(put) == -1)
+	return (1);
+    }
   return (pid);
 }

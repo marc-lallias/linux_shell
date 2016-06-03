@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu Apr 14 22:32:13 2016 Marc Lallias
-** Last update Sun May 15 14:10:53 2016 Marc Lallias
+** Last update Tue May 31 16:46:36 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -18,6 +18,10 @@ t_exe	*double_redir_left(t_exe *to_do, t_env **l_env, t_put *curr)
       curr->argv = NULL;
       put_err(*(to_do->data_tab));
       put_err(" : no such file.\n");
+      while (to_do->right
+	     && (match_n_match(*to_do->right->data_tab, "|") != 1))
+	to_do = to_do->right;
+      return (to_do);
     }
   return (to_do->right);
 }

@@ -5,12 +5,12 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Wed Mar 30 16:15:33 2016 Marc Lallias
-** Last update Mon May  2 17:15:18 2016 Marc Lallias
+** Last update Fri Jun  3 04:45:36 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
-int	aff_env_list(t_env *l_env)
+int	aff_env_list(const t_env *l_env)
 {
   if (l_env)
     {
@@ -23,7 +23,7 @@ int	aff_env_list(t_env *l_env)
   return (0);
 }
 
-void	my_putchar(char c, int outpout)
+void	my_putchar(const char c, int outpout)
 {
   write(outpout, &c, outpout);
   return ;

@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Mon Apr  4 21:09:32 2016 Marc Lallias
-** Last update Fri May 20 18:28:18 2016 Marc Lallias
+** Last update Fri Jun  3 04:24:36 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -49,13 +49,15 @@ int		move(char *to_go, t_env **l_env)
     }
   if (do_move(to_go, st) == 1)
     return (1);
-  change_env(l_env, "OLDPWD", pwd);
+  if (change_env(l_env, "OLDPWD", pwd) == -1)
+    return (1);
   if ((pwd = getcwd(buff, PATH_MAX)) == NULL)
     {
       put_err("getcwd failed.\n");
       return (1);
     }
-  change_env(l_env, "PWD", pwd);
+  if (change_env(l_env, "PWD", pwd) == -1)
+    return (1);
   return (0);
 }
 
@@ -79,7 +81,7 @@ int		my_cd(char **argv, t_env **l_env)
   char		buff[PATH_MAX];
 
   if (argv[1] == NULL)
-    return (0);
+    return (1);
   if ((argv[1])[0] == '~')
     to_go = concat_home(argv[1], *l_env, buff);
   else if ((argv[1])[0] == '-')
