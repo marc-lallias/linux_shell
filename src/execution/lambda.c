@@ -1,22 +1,20 @@
 /*
 ** lambda.c for  in /home/darkmark/rendu/PSU_2015_minishell2/src/execution
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Wed Apr  6 01:21:21 2016 Marc Lallias
-** Last update Fri Jun  3 06:01:52 2016 Marc Lallias
+** Last update Fri Jun  3 18:06:34 2016 
 */
 
 #include "../../inc/minishell2.h"
 
 int	exec_bin(char **argv, char **env)
 {
-  char	*try;
-
   if (my_tab_len(argv) >= ARG_MAX)
     {
-      put_err("More argument than ARG_MAX.\n");
+      put_err(ARG_MAX_ERR);
       return (1);
     }
   if ((access(argv[0], X_OK)) == F_OK)
@@ -28,15 +26,15 @@ int	exec(char **argv, t_env **l_env,  char **env, t_put *put)
 {
   int	ret;
 
-  if (apply_redirection(put))
-    if ((ret = build_in(argv, l_env)) != -1)
-	exit(EXIT_SUCCESS);/* parreile voir remplacer par return */
+  if (apply_redirection(put) == -1)
+    put_err(APPLY_REDIR_ERR);
+  if ((ret = build_in(argv, l_env)) != -1)
+    exit(EXIT_SUCCESS);
   return (exec_bin(argv, env));
 }
 
 int	normal(char **argv, t_env **l_env, t_put *put)
 {
-  int   child;
   int	pid;
   char	**env;
 

@@ -5,7 +5,7 @@
 ** Login peixot_a <pierre.peixoto@epitech.eu>
 **
 ** Started on  Wed Jun  1 16:04:35 2016
-** Last update Wed Jun  1 17:43:12 2016 
+** Last update Fri Jun  3 17:44:32 2016 
 */
 
 #include <pwd.h>
@@ -18,11 +18,11 @@ int		env_i(t_env **l_env)
 
   if ((pw = getpwent()) == NULL)
     return (-1);
-  if (((*l_env) = new_change_elem((*l_env), "USER", pw.pw_name)) == NULL)
+  if (((*l_env) = new_change_elem((*l_env), USER, pw.pw_name)) == NULL)
     return (-1);
-  if (((*l_env) = new_change_elem((*l_env), "HOME", pw.pw_dir)) == NULL)
+  if (((*l_env) = new_change_elem((*l_env), HOME, pw.pw_dir)) == NULL)
     return (-1);
-  if (((*l_env) = new_change_elem((*l_env), "SHELL", pw.pw_shell)) == NULL)
+  if (((*l_env) = new_change_elem((*l_env), SHELL, pw.pw_shell)) == NULL)
     return (-1);
   free(pw);
   return (0);

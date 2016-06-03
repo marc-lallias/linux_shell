@@ -1,11 +1,11 @@
 /*
 ** init_put_struct.c for  in /home/darkmark/rendu/PSU_2015_minishell2/src/token
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Thu Apr 14 01:35:07 2016 Marc Lallias
-** Last update Fri Jun  3 05:07:41 2016 Marc Lallias
+** Last update Fri Jun  3 18:11:44 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -51,12 +51,10 @@ int	init_put_struct(t_put *put)
 {
   if (put->p1_stat == FULL)
     {
-      /* put->p1[0] = -1; */
       put->p1_stat = -1;
     }
   if (put->p2_stat == FULL)
     {
-      /* put->p2[0] = -1; */
       put->p2_stat = -1;
     }
   if (put->r_in != -1)

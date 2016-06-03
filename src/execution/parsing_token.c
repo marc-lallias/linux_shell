@@ -1,12 +1,12 @@
 
 /*
 ** parsing_token.c for  in /home/darkmark/rendu/PSU_2015_minishell2/src/execution
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Sat Apr  9 18:03:46 2016 Marc Lallias
-** Last update Fri Jun  3 03:36:59 2016 Marc Lallias
+** Last update Fri Jun  3 18:08:36 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -62,19 +62,19 @@ static int	check_validity_token(t_env *chevron)
   if (chevron->next == NULL)
     {
       put_err(chevron->data);
-      put_err(" :Unexected.\n");
+      put_err(UNEXECTED);
       return (1);
     }
   if (check_spliters(chevron->next->data) == 1)
     {
       put_err(chevron->data);
-      put_err(" :Unexected.\n");
+      put_err(UNEXECTED);
       return (1);
     }
   if (check_redir(chevron->next->data) == 1)
     {
       put_err(chevron->data);
-      put_err(" :Unexected.\n");
+      put_err(UNEXECTED);
       return (1);
     }
   return (0);
@@ -108,12 +108,13 @@ static t_exe	*build_tree(t_exe *exe, t_env *chevron, t_env *arg)
   return (exe);
 }
 
-t_exe		*exec_list(t_env *arg, t_env *l_env)/* ajouter first */
+t_exe		*exec_list(t_env *arg, t_env *l_env)
 {
   t_env		*chevron;
   t_exe		*previous;
   t_exe		*exe;
 
+  (void)l_env;
   exe = NULL;
   chevron = arg;
   while (arg != NULL)

@@ -1,11 +1,11 @@
 /*
 ** env.c for  in /home/darkmark/rendu/PSU_2015_minishell2/env
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Thu Mar 31 15:35:34 2016 Marc Lallias
-** Last update Fri Jun  3 04:05:43 2016 Marc Lallias
+** Last update Fri Jun  3 18:20:43 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -19,7 +19,7 @@ char	**put_in_env(char **build_env, t_env *l_env)
       *build_env = malloc(my_strlen(l_env->data) + 1);
       if (build_env == NULL)
 	{
-	  put_err("Malloc 2: build_env\n");
+	  put_err(MALLOC2_BUILD_ENV);
 	  return (NULL);
 	}
       *build_env = my_strcopy(*build_env, l_env->data);
@@ -40,7 +40,7 @@ char	**build_env(t_env *l_env)
   build_env = malloc(sizeof(char *) * (list_size + 1));
   if (build_env == NULL)
     {
-      put_err("Malloc 1: build_env\n");
+      put_err(MALLOC1_BUILD_ENV);
       return (NULL);
     }
   build_env+= (list_size);
@@ -90,7 +90,7 @@ t_env	*env_dup(char **env)
       elem = make_env_list(elem, *env);
       if (elem == NULL)
 	{
-	  put_err("Malloc: in env_dup.");
+	  put_err(MALLOC_ENV_DUP);
 	  return (NULL);
 	}
       env++;

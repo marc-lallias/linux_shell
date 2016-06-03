@@ -1,11 +1,11 @@
 /*
 ** change_env.c for  in /home/darkmark/rendu/PSU_2015_minishell2/src/shell_tools
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Thu Apr  7 14:46:05 2016 Marc Lallias
-** Last update Fri Jun  3 04:23:11 2016 Marc Lallias
+** Last update Fri Jun  3 18:17:42 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -61,6 +61,6 @@ int	change_env(t_env **l_env, char *name, char *data)
 	}
     }
   else
-    put_err("Not enougth argument.\n");
+    put_err(NOT_ENOUGH_ARG);
   return (1);
 }

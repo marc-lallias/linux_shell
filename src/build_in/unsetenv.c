@@ -1,11 +1,11 @@
 /*
 ** unsetenv.c for  in /home/darkmark/rendu/PSU_2015_minishell2/src/build_in
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Mon Apr  4 16:58:19 2016 Marc Lallias
-** Last update Fri Jun  3 04:49:52 2016 Marc Lallias
+** Last update Fri Jun  3 17:56:54 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -48,12 +48,12 @@ int		my_unsetenv(char **argv, t_env **l_env)
 
   if (argv[1] == NULL)
     {
-      put_err("Need at list one argument.\n");
+      put_err(NEEDED_ARG);
       return (1);
     }
   if (*l_env == NULL)
     {
-      put_err("Need env.\n");
+      put_err(NEEDED_ENV);
       return (1);
     }
   elem = *l_env;

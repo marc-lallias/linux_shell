@@ -1,15 +1,19 @@
 /*
 ** getenv.h for  in /home/darkmark/perso/my_getenv
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Fri Jun  3 04:45:24 2016 Marc Lallias
+** Last update Fri Jun  3 18:25:42 2016 
 */
 
 #ifndef MINISHELL2_H_
 # define MINISHELL2_H_
+
+/*
+** Includes
+*/
 
 #include <fcntl.h>
 #include <linux/limits.h>
@@ -23,45 +27,181 @@
 
 #include "get_next_line.h"
 
+/*
+** Maccros
+*/
+
 #ifndef EMPTY
 # define EMPTY (1)
-#endif /* EMPTY */
+#endif /* !EMPTY */
 
 #ifndef FULL
 # define FULL (0)
-#endif /* FULL */
+#endif /* !FULL */
 
 #ifndef FOR_READ
 # define FOR_READ (0)
-#endif /* FOR_READ */
+#endif /* !FOR_READ */
 
 #ifndef FOR_WRITE
 # define FOR_WRITE (1)
-#endif /* FOR_WRITE */
+#endif /* !FOR_WRITE */
 
 #ifndef UN_NORMAL
 # define UN_NORMAL (1)
-#endif /* UN_NORMAL */
+#endif /* !UN_NORMAL */
 
 #ifndef NORMAL
 # define NORMAL (0)
-#endif /* FULL */
+#endif /* !FULL */
 
 #ifndef NEED_EXIT
 # define NEED_EXIT (1)
-#endif /* NEED_EXIT */
+#endif /* !NEED_EXIT */
 
 #ifndef NO_EXIT
 # define NO_EXIT (0)
-#endif /* NO_EXIT */
+#endif /* !NO_EXIT */
 
 #ifndef ENV
 # define ENV (1)
-#endif /* NEED_EXIT */
+#endif /* !NEED_EXIT */
 
 #ifndef NO_ENV
 # define NO_ENV (0)
-#endif /* NO_ENV */
+#endif /* !NO_ENV */
+
+#ifndef USER
+# define USER ("USER")
+#endif /* !USER */
+
+#ifndef HOME
+# define HOME ("HOME")
+#endif /* !HOME */
+
+#ifndef SHELL
+# define SHELL ("SHELL")
+#endif /* !SHELL */
+
+#ifndef PROMPT
+# define PROMPT ("&> ")
+#endif /* !PROMPT */
+
+#ifndef PUT_EXIT
+# define PUT_EXIT ("exit")
+#endif /* !PUT_EXIT */
+
+#ifndef ERR_NO_ENV
+# define ERR_NO_ENV ("Be aware there is no env.\n")
+#endif /* !ERR_NO_ENV */
+
+#ifndef CHDIR_FAIL
+# define CHDIR_FAIL ("Chdir failed.\n")
+#endif /* !CHDIR_FAIL */
+
+#ifndef NOR_FILE_DIR
+# define NOR_FILE_DIR ("No file or directory\n")
+#endif /* !NOR_FILE_DIR */
+
+#ifndef GETCWD_FAIL
+# define GETCWD_FAIL ("getcwd failed.\n")
+#endif /* !GETCWD_FAIL */
+
+#ifndef OLDPWD
+# define OLDPWD ("OLDPWD")
+#endif /* !OLDPWD */
+
+#ifndef PWD
+# define PWD ("PWD")
+#endif /* !PWD */
+
+#ifndef ENV_NO_INFO
+# define ENV_NO_INFO ("No information in env.\n")
+#endif /* !ENV_NO_INFO */
+
+#ifndef EXIT_ERR_INPUT
+# define EXIT_ERR_INPUT ("Exit: Invalid input.\n")
+#endif /* !EXIT_ERR_INPUT */
+
+#ifndef NEEDED_ARG
+# define NEEDED_ARG ("Need at list one argument.\n")
+#endif /* !NEEDED_ARG */
+
+#ifndef NEEDED_ENV
+# define NEEDED_ENV ("Need env.\n")
+#endif /* !NEEDED_ENV */
+
+#ifndef DUP_FAIL
+# define DUP_FAIL ("dup failed.\n")
+#endif /* !DUP_FAIL */
+
+#ifndef CLOSE_FAIL
+# define CLOSE_FAIL ("close failed.\n")
+#endif /* !CLOSE_FAIL */
+
+#ifndef PATH_NOT_FOUND
+# define PATH_NOT_FOUND ("Can't found: \"PATH\" in env.\n")
+#endif /* !PATH_NOT_FOUND */
+
+#ifndef NO_EXEC_RIGHT
+# define NO_EXEC_RIGHT (" : No execution right\n")
+#endif /* !NO_EXEC_RIGHT */
+
+#ifndef SEG_ERR
+# define SEG_ERR ("Erreur de segmentation (core dumped).\n")
+#endif /* !SEG_ERR */
+
+#ifndef ARG_MAX_ERR
+# define ARG_MAX_ERR ("More argument than ARG_MAX.\n")
+#endif /* !ARG_MAX_ERR */
+
+#ifndef APPLY_REDIR_ERR
+# define APPLY_REDIR_ERR ("Error while applying redirection.\n")
+#endif /* !APPLY_REDIR_ERR */
+
+#ifndef UNEXECTED
+# define UNEXECTED (" :Unexected.\n")
+#endif /* !UNEXECTED */
+
+#ifndef FORK_FAIL
+# define FORK_FAIL ("Fork: untracked failed")
+#endif /* !FORK_FAIL */
+
+#ifndef NO_SUCH_FILE
+# define NO_SUCH_FILE (" : no such file.\n")
+#endif /* !NO_SUCH_FILE */
+
+#ifndef CMD_NOT_FOUND
+# define CMD_NOT_FOUND (": Command not found.\n")
+#endif /* !CMD_NOT_FOUND */
+
+#ifndef NOT_ENOUGH_ARG
+# define NOT_ENOUGH_ARG ("Not enough argument.\n")
+#endif /* !NOT_ENOUGH_ARG */
+
+#ifndef MALLOC1_BUILD_ENV
+# define MALLOC1_BUILD_ENV ("Malloc 1: build_env\n")
+#endif /* !MALLOC1_BUILD_ENV */
+
+#ifndef MALLOC2_BUILD_ENV
+# define MALLOC2_BUILD_ENV ("Malloc 2: build_env\n")
+#endif /* !MALLOC2_BUILD_ENV */
+
+#ifndef MALLOC_ENV_DUP
+# define MALLOC_ENV_DUP ("Malloc: in env_dup.")
+#endif /* !MALLOC_ENV_DUP */
+
+#ifndef NO_MATCH
+# define NO_MATCH ("Not matches\n")
+#endif /* !NO_MATCH */
+
+#ifndef PATH
+# define PATH ("PATH")
+#endif /* !PATH */
+
+/*
+** Structures
+*/
 
 typedef struct		s_put
 {
@@ -97,6 +237,10 @@ typedef struct		s_int
   int			data_int;
   struct s_int		*next;
 }			t_int;
+
+/*
+** Functions
+*/
 
 /* aff/aff.c */
 
@@ -191,7 +335,7 @@ t_env		*rev_env_list(t_env *elem);
 int		env_list_len(const t_env *l_env);
 t_int		*put_in_int(t_int *elem);
 t_exe		*put_in_exe(t_exe *elem);
-  
+
 /* manip/manip_string1.c */
 
 char		*my_strcat(char *dest, const char *source);
@@ -266,12 +410,5 @@ t_exe		*semi_colon(t_exe *to_do, t_env **l_env, t_put *curr);
 
 t_exe		*left_redir(t_exe *to_do, t_env **l_env, t_put *curr);
 t_exe		*right_redir(t_exe *to_do, t_env **l_env, t_put *curr);
+
 #endif /* MINISHELL2_H_ */
-
-/* checker si right cd */
-
-/* checker si arv > ARG_MAX dans lambda ou parsing_token */
-
-/* Parseur "PEG" (generateur du paseur). */
-
-/* scac > | fait seg */

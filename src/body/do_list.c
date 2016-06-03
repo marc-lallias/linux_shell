@@ -1,11 +1,11 @@
 /*
 ** exec_list.c for  in /home/darkmark/rendu/PSU_2015_minishell2/src/body
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Thu Apr 14 00:33:18 2016 Marc Lallias
-** Last update Fri Jun  3 06:03:12 2016 Marc Lallias
+** Last update Fri Jun  3 17:01:19 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -24,7 +24,7 @@ int	do_list(t_exe *to_do, t_env **l_env, t_put *curr)
 	    return (leav_shell(l_pid, curr));
 	}
       else if ((to_do = choose_token(to_do, l_env, curr)) == NULL)
-	return (1);/* return pls_func dedans free l_pid */
+	return (1);
       if (to_do)
 	to_do = to_do->right;
     }
@@ -66,7 +66,7 @@ int	check_last_token(t_exe *to_do, t_env **l_env, t_put *curr)
 {
   if (curr->argv != NULL)
     {
-      if(match_n_match(*(curr->argv), "echo") == 1) 
+      if(match_n_match(*(curr->argv), "echo") == 1)
 	return (do_list(to_do, l_env, curr));
       if ((match_n_match(*(curr->argv), "setenv") == 1)
 	  && (curr->argv[1] == NULL))
@@ -80,9 +80,6 @@ int	check_last_token(t_exe *to_do, t_env **l_env, t_put *curr)
 
 int    	preli_do_list(t_exe *to_do, t_env **l_env, t_put *curr)
 {
-  t_int	*l_pid;
-
-  l_pid = NULL;
   while (to_do)
     {
       if (match_n_match(*(to_do->data_tab), "|") == 1)

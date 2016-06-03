@@ -1,11 +1,11 @@
 /*
 1;4002;0c** get_next_line.c for  in /home/darkmark/perso
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Tue Mar 29 00:48:49 2016 Marc Lallias
-** Last update Sun Apr 10 19:47:59 2016 Marc Lallias
+** Last update Fri Jun  3 17:07:52 2016 
 */
 
 #include "../../inc/get_next_line.h"
@@ -95,7 +95,7 @@ char		*get_next_line(const int fd)
   static int	i_b = 0;
   char          *line;
   int		ret;
-  
+
   line = NULL;
   if (*buff == '\0')
     {
@@ -113,4 +113,5 @@ char		*get_next_line(const int fd)
 	  return (line);
       i_b = 0;
     }
+  return (NULL);
 }

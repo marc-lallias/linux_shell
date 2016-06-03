@@ -1,11 +1,11 @@
 /*
 ** build_in1.c for  in /home/darkmark/rendu/PSU_2015_minishell2/src/body
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Mon Apr  4 13:51:51 2016 Marc Lallias
-** Last update Sat May 28 13:44:26 2016 Marc Lallias
+** Last update Fri Jun  3 18:12:48 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -41,8 +41,6 @@ int	build_in(char **argv, t_env **l_env)
 	  return ((my_cd(argv, l_env)));
       if ((match_n_match(argv[0], "echo")) == 1)
 	return ((my_echo(argv, l_env)));
-      /* if ((match_n_match(argv[0], "exit")) == 1) */
-      /* 	  return ((my_exit(argv, l_env))); */
     }
   return (-1);
 }
