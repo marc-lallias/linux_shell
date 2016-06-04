@@ -1,12 +1,11 @@
-
 /*
 ** setenv.c for  in /home/darkmark/rendu/PSU_2015_minishell2/src/build_in
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Mon Apr  4 14:03:15 2016 Marc Lallias
-** Last update Fri Jun  3 05:02:58 2016 Marc Lallias
+** Last update Sat Jun  4 22:58:58 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -51,7 +50,7 @@ int		my_setenv(char **argv, t_env **l_env)
 
   if (argv[1] != NULL)
     {
-      
+
       elem = cherch_in_env(*l_env, argv[1]);
       if (elem == NULL)
 	{
@@ -68,4 +67,3 @@ int		my_setenv(char **argv, t_env **l_env)
     aff_env_list(*l_env);
   return (0);
 }
-

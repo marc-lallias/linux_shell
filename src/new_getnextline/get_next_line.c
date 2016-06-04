@@ -1,11 +1,11 @@
 /*
-1;4002;0c** get_next_line.c for  in /home/darkmark/perso
+** get_next_line.c for  in /home/darkmark/perso
 **
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Tue Mar 29 00:48:49 2016 Marc Lallias
-** Last update Fri Jun  3 17:07:52 2016 
+** Last update Sat Jun  4 23:02:36 2016 
 */
 
 #include "../../inc/get_next_line.h"

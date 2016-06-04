@@ -1,15 +1,14 @@
 /*
 ** free.c for  in /home/darkmark/rendu/PSU_2015_42sh/src
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Wed Jun  1 00:46:11 2016 Marc Lallias
-** Last update Sat Jun  4 17:09:38 2016 Marc Lallias
+** Last update Sat Jun  4 22:56:50 2016 
 */
 
 #include "../inc/minishell2.h"
-
 
 void	free_t_int(t_int *elem)
 {

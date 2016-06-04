@@ -5,12 +5,13 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Sat May 14 18:19:56 2016 Marc Lallias
-** Last update Sat Jun  4 17:05:41 2016 Marc Lallias
+** Last update Sat Jun  4 23:00:58 2016 
 */
 
 #include "../../inc/minishell2.h"
 
-t_exe	*handle_check_exe_ret(t_exe *to_do, t_env *l_env, t_put *curr, int ret)
+t_exe	*handle_check_exe_ret(t_exe *to_do, t_env *l_env,
+			      t_put *curr, int ret)
 {
   (void)l_env;
   if (ret == 0 || 2)
@@ -48,7 +49,6 @@ t_exe	*handle_executable(t_exe *to_do, t_env **l_env, t_put *curr)
   	  free(to_do->data_tab[1]);
   	  to_do->data_tab[1] = NULL;
   	  to_do->data_tab[0] = (to_do->data_tab[2]);
-  	  /* to_do->data_tab = &(to_do->data_tab[2]); */
   	  curr->env = NO_ENV;
   	  if (*to_do->data_tab == NULL)
   	    to_do->data_tab = NULL;

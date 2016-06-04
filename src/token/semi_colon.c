@@ -5,11 +5,10 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Thu Apr 14 15:32:31 2016 Marc Lallias
-** Last update Fri Jun  3 18:11:54 2016 
+** Last update Sat Jun  4 23:03:26 2016 
 */
 
 #include "../../inc/minishell2.h"
-
 
 t_exe	*semi_colon(t_exe *to_do, t_env **l_env, t_put *curr)
 {

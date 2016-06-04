@@ -5,11 +5,10 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Wed May 18 13:58:00 2016 Marc Lallias
-** Last update Fri Jun  3 18:04:20 2016 
+** Last update Sat Jun  4 23:01:53 2016 
 */
 
 #include "../../inc/minishell2.h"
-
 
 int	father_wait(t_int *l_pid, t_put *curr)
 {

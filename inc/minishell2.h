@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Sat Jun  4 16:01:42 2016 
+** Last update Sat Jun  4 22:55:48 2016 
 */
 
 #ifndef MINISHELL2_H_
@@ -313,7 +313,7 @@ int		my_unsetenv(char **argv, t_env **l_env);
 ** build_in/exit.c
 */
 
-int		my_exit(char **argv, int *err);/* faire int *ret */
+int		my_exit(char **argv, int *err);
 
 /*
 ** execution/apply_redirection.c
@@ -382,7 +382,6 @@ char		*my_strcopy(char *dest, const char *source);
 int		my_strlen(char *str);
 char		*my_str_n_copy(char *dest, const char *src, int size);
 
-
 /*
 ** manip/manip_tab1.c
 */
@@ -405,7 +404,7 @@ int		match_n_match(char *to_find, char *find_in);
 
 char		*define_arg_content(char *com);
 t_env		*my_argv(char *com);
-char            *pass_arg(char *str);
+char		*pass_arg(char *str);
 char		*put_in_arg(char *str, int size);
 
 /*
@@ -437,7 +436,7 @@ int		my_getnbr(char *str, int *err);
 ** token/check.c
 */
 
-int             check_token(char *str);
+int		check_token(char *str);
 int		check_signifiant(char *str);
 int		check_redir(char *str);
 

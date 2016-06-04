@@ -1,11 +1,11 @@
 /*
 ** get_next_line.h for  in /home/darkmark/perso
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Tue Mar 29 00:49:32 2016 Marc Lallias
-** Last update Tue Mar 29 03:28:29 2016 Marc Lallias
+** Last update Sat Jun  4 22:56:21 2016 
 */
 
 #ifndef GET_NEXT_LINE_H_
@@ -18,7 +18,9 @@
 # define READ_SIZE (5)
 #endif /* READ_SIZE */
 
-/* get_next_line.c */
+/*
+** Get next line functions
+*/
 
 char		*concat_line(char *dest, char *source);
 char		*get_next_line(const int fd);
