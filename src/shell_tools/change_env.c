@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Thu Apr  7 14:46:05 2016 Marc Lallias
-** Last update Fri Jun  3 18:17:42 2016 
+** Last update Sun Jun  5 00:02:28 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -28,6 +28,7 @@ t_env	*modifie_change_elem(t_env *elem, char *name, char *data)
 
 t_env	*new_change_elem(t_env *elem, char *name, char *data)
 {
+  t_env	*new;
   char  *new_data;
 
   new_data = malloc(my_strlen(name) + my_strlen(data) + 2);
@@ -37,7 +38,10 @@ t_env	*new_change_elem(t_env *elem, char *name, char *data)
   my_strcat(new_data, "=");
   if (data != NULL)
     my_strcat(new_data, data);
-  return ((make_env_list(elem, new_data)));
+  if ((new = make_env_list(elem, NULL)) == NULL)
+    return (NULL);
+  new->data = new_data;
+  return (new);
 }
 
 int	change_env(t_env **l_env, char *name, char *data)
@@ -62,5 +66,5 @@ int	change_env(t_env **l_env, char *name, char *data)
     }
   else
     put_err(NOT_ENOUGH_ARG);
-  return (1);
+  return (0);
 }

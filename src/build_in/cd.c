@@ -5,14 +5,14 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Mon Apr  4 21:09:32 2016 Marc Lallias
-** Last update Fri Jun  3 17:54:00 2016 
+** Last update Sun Jun  5 00:06:05 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
-int		do_move(char *to_go, struct stat st)
+static int	do_move(char *to_go, struct stat *st)
 {
-  if (S_ISDIR(st.st_mode))
+  if (S_ISDIR(st->st_mode))
     {
       if ((chdir(to_go)) == -1)
 	{
@@ -21,7 +21,7 @@ int		do_move(char *to_go, struct stat st)
 	}
       return (0);
     }
-  if (S_ISREG(st.st_mode))
+  if (S_ISREG(st->st_mode))
     {
       put_err(NOR_FILE_DIR);
       return (1);
@@ -40,14 +40,14 @@ int		move(char *to_go, t_env **l_env)
   char		*pwd;
   char		buff[PATH_MAX + 1];
 
-  if ((stat(to_go, &st)) >= 1)
+  if ((stat(to_go, &st)) != 0)
     return (1);
   if ((pwd = getcwd(buff, PATH_MAX)) == NULL)
     {
       put_err(GETCWD_FAIL);
       return (1);
     }
-  if (do_move(to_go, st) == 1)
+  if (do_move(to_go, &st) == 1)
     return (1);
   if (change_env(l_env, OLDPWD, pwd) == -1)
     return (1);
@@ -80,6 +80,7 @@ int		my_cd(char **argv, t_env **l_env)
   char		*to_go;
   char		buff[PATH_MAX];
 
+  *buff = '\0';
   if (argv[1] == NULL)
     return (1);
   if ((argv[1])[0] == '~')

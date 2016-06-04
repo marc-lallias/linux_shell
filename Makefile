@@ -5,7 +5,7 @@
 ## Login   <lallia_m@epitech.net>
 ## 
 ## Started on  Sun Apr  3 23:58:58 2016 Marc Lallias
-## Last update Sat Jun  4 16:01:56 2016 
+## Last update Sat Jun  4 23:51:38 2016 Marc Lallias
 ##
 
 NAME	=	42sh
@@ -47,7 +47,7 @@ SRC	=	./src/main.c				\
 
 OBJ	=	$(SRC:.c=.o)
 
-CC	=	gcc
+CC	=	gcc -g
 
 CFLAGS	+=	-W -Wall -Wextra
 
