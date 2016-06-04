@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Sat May 14 18:19:56 2016 Marc Lallias
-** Last update Fri Jun  3 18:15:36 2016 
+** Last update Sat Jun  4 17:05:41 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -42,16 +42,19 @@ t_exe	*handle_executable(t_exe *to_do, t_env **l_env, t_put *curr)
   if (match_n_match(*(to_do->data_tab), "env"))
     {
       if (to_do->data_tab[1] && match_n_match((to_do->data_tab)[1], "-i"))
-	{
-	  free(to_do->data_tab[0]);
-	  to_do->data_tab[0] = NULL;
-	  free(to_do->data_tab[1]);
-	  to_do->data_tab[1] = NULL;
-	  to_do->data_tab = &(to_do->data_tab[2]);
-	  curr->env = NO_ENV;
-	}
+  	{
+  	  free(to_do->data_tab[0]);
+  	  to_do->data_tab[0] = NULL;
+  	  free(to_do->data_tab[1]);
+  	  to_do->data_tab[1] = NULL;
+  	  to_do->data_tab[0] = (to_do->data_tab[2]);
+  	  /* to_do->data_tab = &(to_do->data_tab[2]); */
+  	  curr->env = NO_ENV;
+  	  if (*to_do->data_tab == NULL)
+  	    to_do->data_tab = NULL;
+  	}
     }
-  if (check_build_in(*(to_do->data_tab)) != 1)
+  if (to_do->data_tab && (check_build_in(*(to_do->data_tab)) != 1))
     {
       ret = check_exe(to_do->data_tab, *l_env);
       if (ret != 1)

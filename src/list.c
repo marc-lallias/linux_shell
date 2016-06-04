@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sun Apr  3 23:52:03 2016 Marc Lallias
-** Last update Fri Jun  3 04:37:55 2016 Marc Lallias
+** Last update Sat Jun  4 16:17:06 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
@@ -57,6 +57,7 @@ t_exe	*put_in_exe(t_exe *elem)
   new = malloc(sizeof(t_exe));
   if (new == NULL)
     return (NULL);
+  new->data_tab = NULL;
   new->left = NULL;
   new->right = elem;
   return (new);

@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Thu May 12 14:34:51 2016 Marc Lallias
-** Last update Fri Jun  3 03:00:55 2016 Marc Lallias
+** Last update Sat Jun  4 17:20:35 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -13,8 +13,8 @@
 static t_exe		*make_graph_next(t_exe **graph, t_exe **elem,
 					 t_exe **previous, t_exe **list)
 {
-  if ((*list == NULL) || (check_signifiant(*(*list)->data_tab) == 1)
-      && (*((*list)->data_tab + 1) == NULL))
+  if ((*list == NULL) || ((check_signifiant(*(*list)->data_tab) == 1)
+      && (*((*list)->data_tab + 1) == NULL)))
     {
       (*graph)->left = *elem;
       (*previous)->right = NULL;

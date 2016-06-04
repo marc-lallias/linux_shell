@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Thu Apr 14 00:33:18 2016 Marc Lallias
-** Last update Fri Jun  3 17:01:19 2016 
+** Last update Sat Jun  4 16:36:38 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -56,7 +56,7 @@ int	last_token(t_exe *to_do, t_env **l_env, t_put *curr)
       loc_argv = curr->argv;
       if (do_list(to_do, l_env, curr) == 1)
 	return (-1);
-      build_in(loc_argv, l_env);
+      curr->ret = build_in(loc_argv, l_env); /* controler */
       return (curr->ret);
     }
   return (do_list(to_do, l_env, curr));

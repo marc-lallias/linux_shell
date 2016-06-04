@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sun Apr  3 23:11:29 2016 Marc Lallias
-** Last update Fri Jun  3 04:44:17 2016 Marc Lallias
+** Last update Sat Jun  4 17:08:33 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -15,6 +15,8 @@ int	my_tab_len(char **tab)
   char	**first;
 
   first = tab;
+  if (tab == NULL)
+    return (0);
   while (*tab)
     {
       tab++;
@@ -51,11 +53,12 @@ void	my_free_tab(char **tab)
   first = tab;
   if (tab == NULL)
     return ;
-  while (*tab)
+  while (*tab != NULL)
     {
       free(*tab);
       tab++;
     }
+  free(*tab);
   free(first);
   return ;
 }

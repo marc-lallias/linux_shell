@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Mon Apr  4 00:15:15 2016 Marc Lallias
-** Last update Fri Jun  3 17:48:08 2016 
+** Last update Sat Jun  4 16:59:19 2016 Marc Lallias
 */
 
 #include "../inc/minishell2.h"
@@ -42,7 +42,7 @@ static int	prep_execution(char *line, t_env **l_env, int *exit)
   if ((to_do = exec_list(arg, *l_env)) == NULL)
     {
       free_env(arg);
-      return (-1);
+      return (1);
     }
   if ((to_do = make_graph(to_do)) != NULL)
     {
