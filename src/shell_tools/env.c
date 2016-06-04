@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Thu Mar 31 15:35:34 2016 Marc Lallias
-** Last update Fri Jun  3 18:20:43 2016 
+** Last update Sat Jun  4 23:08:53 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -59,7 +59,6 @@ void    free_env(t_env *elem)
       elem = elem->next;
       free (previus);
     }
-  return ;
 }
 
 t_env	*make_env_list(t_env *elem, char *env)

@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Mon Apr  4 16:58:19 2016 Marc Lallias
-** Last update Sat Jun  4 16:39:36 2016 Marc Lallias
+** Last update Sat Jun  4 23:08:22 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -14,7 +14,6 @@ void		free_env_elem(t_env *elem)
 {
   free(elem->data);
   free(elem);
-  return ;
 }
 
 int		check_all(char *to_del, t_env *elem)

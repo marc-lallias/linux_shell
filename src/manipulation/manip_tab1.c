@@ -1,11 +1,11 @@
 /*
 ** manip_tab1.c for  in /home/darkmark/rendu/PSU_2015_minishell2/env
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Sun Apr  3 23:11:29 2016 Marc Lallias
-** Last update Sat Jun  4 17:08:33 2016 Marc Lallias
+** Last update Sat Jun  4 23:09:51 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -60,5 +60,4 @@ void	my_free_tab(char **tab)
     }
   free(*tab);
   free(first);
-  return ;
 }

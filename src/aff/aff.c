@@ -1,11 +1,11 @@
 /*
 ** aff.c for  in /home/darkmark/rendu/PSU_2015_minishell2/env
-** 
+**
 ** Made by Marc Lallias
 ** Login   <lallia_m@epitech.net>
-** 
+**
 ** Started on  Wed Mar 30 16:15:33 2016 Marc Lallias
-** Last update Fri Jun  3 04:45:36 2016 Marc Lallias
+** Last update Sat Jun  4 23:07:53 2016 
 */
 
 #include "../../inc/minishell2.h"
@@ -26,15 +26,13 @@ int	aff_env_list(const t_env *l_env)
 void	my_putchar(const char c, int outpout)
 {
   write(outpout, &c, outpout);
-  return ;
 }
 
 void	my_put_str(char *str)
 {
   if (str == NULL)
-      return ;
+    return ;
   write(1, str, my_strlen(str));
-  return ;
 }
 
 void	my_show_tab(char **tab)
@@ -47,13 +45,11 @@ void	my_show_tab(char **tab)
       my_putchar('\n', 1);
       tab++;
     }
-  return ;
 }
 
 void	put_err(char *str)
 {
   if (str == NULL)
-    return;
+    return ;
   write(2, str, (my_strlen(str)));
-  return ;
 }

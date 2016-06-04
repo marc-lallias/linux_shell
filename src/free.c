@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Wed Jun  1 00:46:11 2016 Marc Lallias
-** Last update Sat Jun  4 22:56:50 2016 
+** Last update Sat Jun  4 23:05:55 2016 
 */
 
 #include "../inc/minishell2.h"
@@ -20,7 +20,6 @@ void	free_t_int(t_int *elem)
       elem = elem->next;
       free(previous);
     }
-  return ;
 }
 
 void	free_t_exe(t_exe *elem)
@@ -36,5 +35,4 @@ void	free_t_exe(t_exe *elem)
       my_free_tab(previous->data_tab);
       free(previous);
     }
-  return ;
 }
