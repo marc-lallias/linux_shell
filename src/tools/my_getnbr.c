@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Tue Apr 12 18:39:56 2016 Marc Lallias
-** Last update Fri Jun  3 18:22:21 2016 
+** Last update Sun Jun  5 21:56:05 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -26,7 +26,7 @@ int	my_getnbr(char *str, int *ret)
     }
   while (*str)
     {
-      if (*str < '0' || *str > '9')
+      if ((tot >= INT_MAX / 10) || (*str < '0' || *str > '9'))
 	{
 	  *ret = 1;
 	  return (-1);
