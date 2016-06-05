@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Mon Apr  4 16:58:19 2016 Marc Lallias
-** Last update Sat Jun  4 23:08:22 2016 
+** Last update Sun Jun  5 19:54:58 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -60,7 +60,7 @@ int		my_unsetenv(char **argv, t_env **l_env)
     {
       *l_env = (*l_env)->next;
       free_env_elem(elem);
-      return (1);
+      return (0);
     }
   return ((check_all(argv[1], *l_env)));
 }
