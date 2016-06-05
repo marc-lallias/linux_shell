@@ -5,7 +5,7 @@
 ## Login   <lallia_m@epitech.net>
 ## 
 ## Started on  Sun Apr  3 23:58:58 2016 Marc Lallias
-## Last update Sun Jun  5 19:55:26 2016 Marc Lallias
+## Last update Mon Jun  6 01:12:28 2016 Marc Lallias
 ##
 
 NAME	=	42sh
@@ -65,4 +65,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all fclean clean re
