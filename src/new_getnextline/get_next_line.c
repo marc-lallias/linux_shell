@@ -5,12 +5,12 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Tue Mar 29 00:48:49 2016 Marc Lallias
-** Last update Sat Jun  4 23:02:36 2016 
+** Last update Sun Jun  5 18:47:20 2016 Marc Lallias
 */
 
 #include "../../inc/get_next_line.h"
 
-int		strlen_stop(char *str, char c)
+static int	strlen_stop(char *str, char c)
 {
   char		*first;
 
@@ -26,7 +26,7 @@ int		strlen_stop(char *str, char c)
   return (str - first);
 }
 
-char		*concat_line(char *dest, char *source)
+static char	*concat_line(char *dest, char *source)
 {
   while (*source)
     {
@@ -43,7 +43,7 @@ char		*concat_line(char *dest, char *source)
   return (dest);
 }
 
-int		make_line(char **line, char *buff)
+static int	make_line(char **line, char *buff)
 {
   char		*first;
   char		*new;
@@ -67,7 +67,7 @@ int		make_line(char **line, char *buff)
   return (buff_rest);
 }
 
-int		make_buff(char *buff, char **line, int fd)
+static int	make_buff(char *buff, char **line, int fd)
 {
   int		ret;
 
@@ -93,7 +93,7 @@ char		*get_next_line(const int fd)
 {
   static char	buff[READ_SIZE + 1];
   static int	i_b = 0;
-  char          *line;
+  char		*line;
   int		ret;
 
   line = NULL;
@@ -108,9 +108,9 @@ char		*get_next_line(const int fd)
 	return (NULL);
       i_b = i_b + ret;
       if ((buff[i_b - 1]) == '\n' && line)
-	  return (line);
+	return (line);
       if ((make_buff(buff, &line, fd)) <= 0)
-	  return (line);
+	return (line);
       i_b = 0;
     }
   return (NULL);

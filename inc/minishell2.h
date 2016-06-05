@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Wed Mar 30 00:32:04 2016 Marc Lallias
-** Last update Sat Jun  4 22:55:48 2016 
+** Last update Sun Jun  5 17:34:08 2016 Marc Lallias
 */
 
 #ifndef MINISHELL2_H_
@@ -25,8 +25,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <limits.h>
-
-#include "get_next_line.h"
 
 /*
 ** Maccros

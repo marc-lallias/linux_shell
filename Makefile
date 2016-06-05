@@ -5,13 +5,12 @@
 ## Login   <lallia_m@epitech.net>
 ## 
 ## Started on  Sun Apr  3 23:58:58 2016 Marc Lallias
-## Last update Sat Jun  4 23:51:38 2016 Marc Lallias
+## Last update Sun Jun  5 19:01:09 2016 Marc Lallias
 ##
 
 NAME	=	42sh
 
-SRC	=	./src/main.c				\
-		./src/aff/aff.c				\
+SRC	=	./src/aff/aff.c				\
 		./src/body/build_in1.c			\
 		./src/body/choose_token.c		\
 		./src/body/do_list.c			\
@@ -27,11 +26,12 @@ SRC	=	./src/main.c				\
 		./src/execution/lambda.c		\
 		./src/execution/make_graph.c		\
 		./src/execution/parsing_token.c		\
-		./src/free.c				\
-		./src/list.c				\
+		./src/list/free.c			\
+		./src/list/list.c			\
+		./src//main/main.c			\
 		./src/manipulation/manip_tab1.c		\
 		./src/manipulation/manip_string1.c	\
-		./src/match_n_match.c			\
+		./src/match_n_match/match_n_match.c	\
 		./src/new_getnextline/get_next_line.c	\
 		./src/shell_tools/change_env.c		\
 		./src/shell_tools/env.c			\
@@ -42,7 +42,6 @@ SRC	=	./src/main.c				\
 		./src/token/double_redir.c		\
 		./src/token/init_put_struct.c		\
 		./src/token/pipe.c			\
-		./src/token/semi_colon.c		\
 		./src/token/simple_redirection.c	\
 
 OBJ	=	$(SRC:.c=.o)
@@ -65,3 +64,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

@@ -5,14 +5,14 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Fri May  6 21:11:00 2016 Marc Lallias
-** Last update Fri Jun  3 18:03:08 2016 
+** Last update Sun Jun  5 18:28:26 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
-char    *next_path(char *buff, char *try, char *arg1)
+char	*next_path(char *buff, char *try, char *arg1)
 {
-  char  *first;
+  char	*first;
 
   first = buff;
   if ((try == NULL) || (*try != '\0'))
@@ -52,7 +52,7 @@ int	char_in(char to_found, char *found_in)
 
 int	try_all_path(char **str, t_env *l_env)
 {
-  char  buff[PATH_MAX + 1];
+  char	buff[PATH_MAX + 1];
   char	*try;
 
   if ((try = my_getenv(l_env, PATH)) == NULL)
@@ -80,7 +80,7 @@ int		check_exe(char **str, t_env *l_env)
 
   if (char_in('/', *str) == 1)
     {
-      if ((stat(*str, &buff)) < 1)
+      if ((stat(*str, &buff)) == 0)
 	{
 	  if ((S_ISREG(buff.st_mode)))
 	    {

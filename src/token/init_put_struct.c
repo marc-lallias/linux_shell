@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Thu Apr 14 01:35:07 2016 Marc Lallias
-** Last update Fri Jun  3 18:11:44 2016 
+** Last update Sun Jun  5 18:58:37 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -35,12 +35,14 @@ int	init_put_struct2(t_put *put)
 {
   if (put->rr_in != -1)
     {
-      close(put->rr_in);
+      if (close(put->rr_in) == -1)
+	return (-1);
       put->rr_in = -1;
     }
   if (put->rr_out != -1)
     {
-      close(put->rr_out);
+      if (close(put->rr_out) == -1)
+	return (-1);
       put->rr_out = -1;
     }
   put->env = ENV;
@@ -59,12 +61,14 @@ int	init_put_struct(t_put *put)
     }
   if (put->r_in != -1)
     {
-      close(put->r_in);
+      if (close(put->r_in) == -1)
+	return (-1);
       put->r_in = -1;
     }
   if (put->r_out != -1)
     {
-      close(put->r_out);
+      if (close(put->r_out) == -1)
+	return (-1);
       put->r_out = -1;
     }
   return (init_put_struct2(put));

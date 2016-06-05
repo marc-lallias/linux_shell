@@ -5,10 +5,10 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Wed Jun  1 00:46:11 2016 Marc Lallias
-** Last update Sat Jun  4 23:05:55 2016 
+** Last update Sun Jun  5 19:05:13 2016 Marc Lallias
 */
 
-#include "../inc/minishell2.h"
+#include "../../inc/minishell2.h"
 
 void	free_t_int(t_int *elem)
 {

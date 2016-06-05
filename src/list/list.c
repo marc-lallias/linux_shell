@@ -5,10 +5,10 @@
 ** Login   <lallia_m@epitech.net>
 ** 
 ** Started on  Sun Apr  3 23:52:03 2016 Marc Lallias
-** Last update Sat Jun  4 16:17:06 2016 Marc Lallias
+** Last update Sun Jun  5 19:05:04 2016 Marc Lallias
 */
 
-#include "../inc/minishell2.h"
+#include "../../inc/minishell2.h"
 
 t_env	*rev_env_list(t_env *elem)
 {

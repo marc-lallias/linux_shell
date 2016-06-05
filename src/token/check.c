@@ -5,12 +5,12 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Sun May  1 15:43:15 2016 Marc Lallias
-** Last update Sat Jun  4 23:03:13 2016 
+** Last update Sun Jun  5 18:54:38 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
-int     check_signifiant(char *str)
+int	check_signifiant(char *str)
 {
   if (str == NULL)
     return (1);
@@ -21,10 +21,9 @@ int     check_signifiant(char *str)
   if ((match_n_match(";", str)) == 1)
     return (1);
   return (0);
-
 }
 
-int     check_spliters(char *str)
+int	check_spliters(char *str)
 {
   if (str == NULL)
     return (1);
@@ -52,7 +51,7 @@ int	check_redir(char *str)
   return (0);
 }
 
-int     check_token(char *str)
+int	 check_token(char *str)
 {
   if ((match_n_match("&&*", str)) == 1)
     return (2);

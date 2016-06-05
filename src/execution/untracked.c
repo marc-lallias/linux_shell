@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Sun May  1 18:01:57 2016 Marc Lallias
-** Last update Fri Jun  3 18:09:47 2016 
+** Last update Sun Jun  5 18:33:58 2016 Marc Lallias
 */
 
 #include "./../inc/minichell2.h"
@@ -24,5 +24,4 @@ int	untracked(t_exe	*to_do)
     do_list(to_do);
   else
     return (0);
-
 }

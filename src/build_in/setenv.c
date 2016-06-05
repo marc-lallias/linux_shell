@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Mon Apr  4 14:03:15 2016 Marc Lallias
-** Last update Sat Jun  4 22:58:58 2016 
+** Last update Sun Jun  5 18:25:01 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -50,7 +50,6 @@ int		my_setenv(char **argv, t_env **l_env)
 
   if (argv[1] != NULL)
     {
-
       elem = cherch_in_env(*l_env, argv[1]);
       if (elem == NULL)
 	{

@@ -5,12 +5,12 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Mon Apr  4 00:34:48 2016 Marc Lallias
-** Last update Sat Jun  4 22:57:38 2016 
+** Last update Sun Jun  5 19:06:01 2016 Marc Lallias
 */
 
-#include "../inc/minishell2.h"
+#include "../../inc/minishell2.h"
 
-int     match_complet(char *to_find, char *find_in)
+int	match_complet(char *to_find, char *find_in)
 {
   while ((*to_find == *find_in) && *to_find && *find_in)
     {

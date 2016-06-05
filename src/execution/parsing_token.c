@@ -5,16 +5,16 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Sat Apr  9 18:03:46 2016 Marc Lallias
-** Last update Sat Jun  4 23:02:01 2016 
+** Last update Sun Jun  5 18:32:44 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
 static char	**convert(t_env *start, t_env *end)
 {
-  t_env	*first;
-  char	**tab;
-  int	size;
+  t_env		*first;
+  char		**tab;
+  int		size;
 
   first = start;
   size = 0;
@@ -41,7 +41,7 @@ static char	**convert(t_env *start, t_env *end)
 
 static t_exe	*insert(char **tab, t_exe *elem)
 {
-  t_exe	*new;
+  t_exe		*new;
 
   if (tab == NULL)
     return (NULL);
@@ -78,6 +78,7 @@ static int	check_validity_token(t_env *chevron)
     }
   return (0);
 }
+
 static t_exe	*build_tree(t_exe *exe, t_env *chevron, t_env *arg)
 {
   if ((check_spliters(chevron->data)) == 1)

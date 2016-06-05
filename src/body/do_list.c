@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Thu Apr 14 00:33:18 2016 Marc Lallias
-** Last update Sat Jun  4 23:01:22 2016 
+** Last update Sun Jun  5 18:18:53 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -78,7 +78,7 @@ int	check_last_token(t_exe *to_do, t_env **l_env, t_put *curr)
   return (do_list(to_do, l_env, curr));
 }
 
-int    	preli_do_list(t_exe *to_do, t_env **l_env, t_put *curr)
+int	preli_do_list(t_exe *to_do, t_env **l_env, t_put *curr)
 {
   while (to_do)
     {
@@ -98,26 +98,25 @@ int	do_graph(t_exe *to_do, t_env **l_env, t_put *curr)
 {
   while (to_do)
     {
-      if ((to_do->data_tab == NULL)
-	  || (match_n_match(*(to_do->data_tab), ";") == 1))
-	{
-	  if ((curr->ret = preli_do_list(to_do->left, l_env, curr)) == -1)
-	    return (1);
-	}
-      else if ((match_n_match(*(to_do->data_tab), "&&") == 1)
-	       && (curr->ret == 0))
-	{
-	  if ((curr->ret = preli_do_list(to_do->left, l_env, curr)) == -1)
-	    return (1);
-	}
-      else if ((match_n_match(*(to_do->data_tab), "||") == 1)
-	       && (curr->ret == 1))
-	{
-	  if ((curr->ret = preli_do_list(to_do->left, l_env, curr)) == -1)
-	    return (1);
-	}
-      init_put_struct(curr);
+      if ((curr->ret = preli_do_list(to_do->left, l_env, curr)) == -1)
+  	return (1);
       to_do = to_do->right;
+      if (to_do && match_n_match(*(to_do->data_tab), "&&") == 1)
+  	{
+  	  if (curr->ret != 0)
+  	    {
+  	      while (to_do && (match_n_match(*(to_do->data_tab), ";") != 1))
+		to_do = to_do->right;
+  	    }
+  	}
+      else if (to_do && match_n_match(*(to_do->data_tab), "||") == 1)
+  	{
+  	  if (curr->ret != 1)
+	    {
+  	      while (to_do && (match_n_match(*(to_do->data_tab), ";") != 1))
+		to_do = to_do->right;
+	    }
+  	}
     }
   return (curr->ret);
 }

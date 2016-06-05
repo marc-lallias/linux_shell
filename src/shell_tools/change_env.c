@@ -5,14 +5,14 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Thu Apr  7 14:46:05 2016 Marc Lallias
-** Last update Sun Jun  5 00:02:28 2016 Marc Lallias
+** Last update Sun Jun  5 19:08:52 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
 
-t_env	*modifie_change_elem(t_env *elem, char *name, char *data)
+static t_env	*modifie_change_elem(t_env *elem, char *name, char *data)
 {
-  char	*new_data;
+  char		*new_data;
 
   new_data = malloc(my_strlen(name) + my_strlen(data) + 2);
   if (new_data == NULL)
@@ -26,10 +26,10 @@ t_env	*modifie_change_elem(t_env *elem, char *name, char *data)
   return (elem);
 }
 
-t_env	*new_change_elem(t_env *elem, char *name, char *data)
+static t_env   	*new_change_elem(t_env *elem, char *name, char *data)
 {
-  t_env	*new;
-  char  *new_data;
+  t_env		*new;
+  char		*new_data;
 
   new_data = malloc(my_strlen(name) + my_strlen(data) + 2);
   if (new_data == NULL)
@@ -44,9 +44,9 @@ t_env	*new_change_elem(t_env *elem, char *name, char *data)
   return (new);
 }
 
-int	change_env(t_env **l_env, char *name, char *data)
+int		change_env(t_env **l_env, char *name, char *data)
 {
-  t_env	*elem;
+  t_env		*elem;
 
   if (l_env == NULL)
     return (0);
