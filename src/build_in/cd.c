@@ -5,7 +5,7 @@
 ** Login   <lallia_m@epitech.net>
 **
 ** Started on  Mon Apr  4 21:09:32 2016 Marc Lallias
-** Last update Mon Jun  6 01:24:42 2016 Marc Lallias
+** Last update Mon Jun  6 01:34:44 2016 Marc Lallias
 */
 
 #include "../../inc/minishell2.h"
@@ -82,7 +82,7 @@ int		my_cd(char **argv, t_env **l_env)
 
   *buff = '\0';
   if (argv[1] == NULL)
-    to_go = concat_home("", *l_env, buff);
+    return (1);
   else
     {
       if ((argv[1])[0] == '~')
